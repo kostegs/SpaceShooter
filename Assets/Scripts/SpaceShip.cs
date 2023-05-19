@@ -60,7 +60,42 @@ namespace SpaceShooter
             _rigid.inertia = 1;
         }
 
+        private void Update()
+        {
+            ThrustControl = 0;
+            TorqueControl= 0;
+
+            if (Input.GetKey(KeyCode.W))
+                ThrustControl = 1.0f;
+
+            if (Input.GetKey(KeyCode.S))
+                ThrustControl = -1.0f;
+
+            if (Input.GetKey(KeyCode.D))
+                TorqueControl = -1.0f;
+
+            if (Input.GetKey(KeyCode.A))
+                TorqueControl = 1.0f;
+        }
+
+        private void FixedUpdate()
+        {
+            UpdateRigidbody();
+        }
+
         #endregion
+
+        /// <summary>
+        /// Add force for moving of the ship
+        /// </summary>
+        private void UpdateRigidbody()
+        {
+            _rigid.AddForce(ThrustControl * _thrust * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);
+            _rigid.AddForce(-_rigid.velocity * (_thrust / _maxLinearVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);
+
+            _rigid.AddTorque(TorqueControl * _mobility * Time.deltaTime, ForceMode2D.Force);
+            _rigid.AddTorque(-_rigid.angularVelocity * (_mobility / _maxAngularVelocity) * Time.deltaTime, ForceMode2D.Force);
+        }
 
     }
 }
