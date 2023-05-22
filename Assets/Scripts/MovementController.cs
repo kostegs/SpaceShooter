@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -16,15 +13,15 @@ namespace SpaceShooter
 
         [SerializeField] private SpaceShip _targetShip;
         [SerializeField] private VirtualJoystick _joystick;
-        [SerializeField] private ControlMode _controlMode;
-        [SerializeField] private bool _autoControlMode;
+
+        private ControlMode _controlMode;
 
         private void Start()
         {
-            if (_autoControlMode)
-                SwitchControlMode();
+            SwitchControlMode(ControlMode.Keyboard);
+            _joystick.OnJoystickUsed += OnJoystickUsedHandler;
+            _joystick.OnJoystickUseFinished += OnJoystickUseFinishedHandler;
 
-            ManageVisibility();
         }
 
         private void Update()
@@ -38,21 +35,11 @@ namespace SpaceShooter
                 ControlMobile();
         }
 
-        private void SwitchControlMode()
-        {
-            if (Application.isMobilePlatform)            
-               _controlMode = ControlMode.Mobile;            
-            else            
-               _controlMode = ControlMode.Keyboard;            
-        }
+        private void SwitchControlMode(ControlMode controlMode) => _controlMode = controlMode;            
 
-        private void ManageVisibility()
-        {
-            if (_controlMode == ControlMode.Mobile)                            
-                _joystick.gameObject.SetActive(true);            
-            else                
-                _joystick.gameObject.SetActive(false);            
-        }
+        public void OnJoystickUsedHandler() => SwitchControlMode(ControlMode.Mobile);
+
+        public void OnJoystickUseFinishedHandler() => SwitchControlMode(ControlMode.Keyboard);
 
         private void ControlMobile()
         {

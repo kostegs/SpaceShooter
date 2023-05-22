@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 namespace SpaceShooter
 {
@@ -10,6 +11,9 @@ namespace SpaceShooter
         [SerializeField] private Image _joyStick;
 
         public Vector2 Value { get; private set; }
+
+        public event Action OnJoystickUsed;
+        public event Action OnJoystickUseFinished;
 
         public void OnDrag(PointerEventData eventData)
         {
@@ -33,6 +37,8 @@ namespace SpaceShooter
             float offsetY = (_joyBack.rectTransform.sizeDelta.y / 2) - (_joyStick.rectTransform.sizeDelta.y / 2);
 
             _joyStick.rectTransform.anchoredPosition = new Vector2(Value.x * offsetX, Value.y * offsetY);
+
+            OnJoystickUsed?.Invoke();
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -45,6 +51,8 @@ namespace SpaceShooter
             Value = Vector2.zero;
 
             _joyStick.rectTransform.anchoredPosition = Value;
+
+            OnJoystickUseFinished?.Invoke();
         }
     }
 }
