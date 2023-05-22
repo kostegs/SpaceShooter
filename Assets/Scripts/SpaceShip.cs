@@ -58,25 +58,7 @@ namespace SpaceShooter
             _rigid = GetComponent<Rigidbody2D>();
             _rigid.mass = _mass;
             _rigid.inertia = 1;
-        }
-
-        private void Update()
-        {
-            ThrustControl = 0;
-            TorqueControl= 0;
-
-            if (Input.GetKey(KeyCode.W))
-                ThrustControl = 1.0f;
-
-            if (Input.GetKey(KeyCode.S))
-                ThrustControl = -1.0f;
-
-            if (Input.GetKey(KeyCode.D))
-                TorqueControl = -1.0f;
-
-            if (Input.GetKey(KeyCode.A))
-                TorqueControl = 1.0f;
-        }
+        }        
 
         private void FixedUpdate()
         {
