@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-
     public class MovementController : MonoBehaviour
     {
         public enum ControlMode
@@ -45,11 +44,8 @@ namespace SpaceShooter
         {
             Vector2 direction = _joystick.Value;
 
-            var dot = Vector2.Dot(direction, _targetShip.transform.up);
-            var dot2 = Vector2.Dot(direction, _targetShip.transform.right);
-
-            _targetShip.ThrustControl = Mathf.Max(0, dot);
-            _targetShip.TorqueControl = -dot2;
+            _targetShip.ThrustControl = direction.y;
+            _targetShip.TorqueControl = -direction.x;
         }
 
         private void ControlKeyboard()
