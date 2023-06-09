@@ -2,7 +2,7 @@
 
 *.cs diff=csharp text
 *.cginc text
-*.shader text
+*.shader linguist-language=unityyamlmerge
 
 *.mat merge=unityyamlmerge eol=lf
 *.anim merge=unityyamlmerge eol=lf
