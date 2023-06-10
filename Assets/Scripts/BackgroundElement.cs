@@ -13,14 +13,17 @@ namespace SpaceShooter
         private Material _quadMaterial;
         private Vector2 _initialOffset;
 
+        private static int _count;
+
         private void Start()
         {
+            _count++;
             _quadMaterial = GetComponent<MeshRenderer>().material;
             
             // случайная точка в рамках единичной окружности
-            _initialOffset = Random.insideUnitSphere; 
+            _initialOffset = Random.insideUnitSphere;            
 
-            _quadMaterial.mainTextureScale = Vector2.one * _textureScale;
+            _quadMaterial.mainTextureScale = Vector2.one * _textureScale;            
         }
 
         private void Update()
