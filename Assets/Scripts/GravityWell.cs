@@ -17,8 +17,6 @@ namespace SpaceShooter
 
             float distance = direction.magnitude;
             
-            Debug.Log(distance / _radius);
-
             Vector2 force = direction.normalized * _force * (distance / _radius);
             collision.attachedRigidbody.AddForce(force, ForceMode2D.Force);
         }
