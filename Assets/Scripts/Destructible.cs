@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -15,6 +16,8 @@ namespace SpaceShooter
         public bool Indestructible => _indestructible;
         public int HitPoints => _hitPoints;
         public int CurrentHitPoints { get; private set; }
+
+        public event EventHandler<EventArgs> OnDestruct;
 
         #endregion
 
@@ -45,6 +48,7 @@ namespace SpaceShooter
         private protected virtual void OnDeath()
         {
             Destroy(gameObject);
+            OnDestruct?.Invoke(this, new EventArgs());
         }
 
     }

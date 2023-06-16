@@ -27,5 +27,8 @@ namespace SpaceShooter
             if (_interpolationAngularSpeed > 0)
                 _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, _target.rotation, _interpolationAngularSpeed * Time.fixedDeltaTime);
         }
+
+        public void SetTarget(Transform target) => _target = target;
+
     }
 }
