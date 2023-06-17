@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -78,6 +80,11 @@ namespace SpaceShooter
             _rigid.AddTorque(TorqueControl * _mobility * Time.deltaTime, ForceMode2D.Force);
             _rigid.AddTorque(-_rigid.angularVelocity * (_mobility / _maxAngularVelocity) * Time.deltaTime, ForceMode2D.Force);
         }
+
+        private protected override void OnDeath()
+        {
+            ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, ExplosionParticleSystem, base.OnDeath);            
+        }       
 
     }
 }

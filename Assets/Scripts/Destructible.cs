@@ -13,6 +13,14 @@ namespace SpaceShooter
         [SerializeField] private bool _indestructible;
         [SerializeField] private int _hitPoints;
 
+        private ParticleSystem _explosionParticleSystem;
+        public ParticleSystem ExplosionParticleSystem 
+        {
+            get { return _explosionParticleSystem; }
+            set { if (value != null)
+                    _explosionParticleSystem = value; } 
+        }                
+
         public bool Indestructible => _indestructible;
         public int HitPoints => _hitPoints;
         public int CurrentHitPoints { get; private set; }
@@ -45,11 +53,7 @@ namespace SpaceShooter
 
         #endregion
 
-        private protected virtual void OnDeath()
-        {
-            Destroy(gameObject);
-            OnDestruct?.Invoke(this, new EventArgs());
-        }
+        private protected virtual void OnDeath() => OnDestruct?.Invoke(this, new EventArgs());
 
     }
 }

@@ -73,6 +73,7 @@ MonoBehaviour:
   _nickName: 
   _indestructible: 0
   _hitPoints: 100
+  _explosionParticleSystem: {fileID: 0}
   _mass: 1
   _thrust: 1000
   _mobility: 2000
