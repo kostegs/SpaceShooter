@@ -203,7 +203,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364133193}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5615,7 +5615,6 @@ GameObject:
   - component: {fileID: 960828306}
   - component: {fileID: 960828308}
   - component: {fileID: 960828307}
-  - component: {fileID: 960828309}
   m_Layer: 0
   m_Name: ArrowImage
   m_TagString: Untagged
@@ -5639,9 +5638,9 @@ RectTransform:
   m_Father: {fileID: 1903805287}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 474}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &960828307
@@ -5664,7 +5663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3187d75f142543a46b1912521e72d566, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3388ec4561f59b5439bfa8cc73c999f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5682,21 +5681,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960828305}
   m_CullTransparentMesh: 1
---- !u!114 &960828309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960828305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85184d599fa2ad24e9829ef9a4ec62c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spaceShip: {fileID: 2932375725723551478}
-  _UFO: {fileID: 1661558855}
-  _camera: {fileID: 519420031}
 --- !u!1 &1118657609
 GameObject:
   m_ObjectHideFlags: 0
@@ -6594,7 +6578,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903805287}
-  - component: {fileID: 1903805289}
   - component: {fileID: 1903805288}
   m_Layer: 0
   m_Name: Arrow
@@ -6633,25 +6616,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903805286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19642f323dd31e54e93c7685a0b76b75, type: 3}
+  m_Script: {fileID: 11500000, guid: 85184d599fa2ad24e9829ef9a4ec62c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 364133195}
-  _distanceMeter: {fileID: 1903805289}
---- !u!114 &1903805289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903805286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f86486d21b4ec447b5d65a67229df4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _firstObject: {fileID: 2932375725723551478}
-  _secondObject: {fileID: 1661558855}
+  _spaceShip: {fileID: 2932375725723551478}
+  _UFO: {fileID: 1661558855}
+  _camera: {fileID: 519420031}
+  _distanceText: {fileID: 364133195}
 --- !u!1001 &2932375725723551477
 PrefabInstance:
   m_ObjectHideFlags: 0
