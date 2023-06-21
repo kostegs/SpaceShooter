@@ -34,10 +34,14 @@ namespace SpaceShooter
 
 #if UNITY_EDITOR
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             UnityEditor.Handles.color = Color.green;
             UnityEditor.Handles.DrawWireDisc(transform.position, transform.forward, _radius);
+        }
+        private void OnDrawGizmosSelected()
+        {
+            
         }
 
 #endif

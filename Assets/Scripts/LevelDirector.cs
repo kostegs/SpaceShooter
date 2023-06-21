@@ -10,12 +10,15 @@ namespace SpaceShooter
         [SerializeField] private ParticleSystem _shipExplosionPS;
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _mainCamera;
+        [SerializeField] private SpawnPoint[] _spawnPoints;
 
         private Player _playerScript;
+        private int _currentSpawnPoint;
 
         private void Start()
         {
             RespawnSpaceShip();
+            SubscribeToSpawnPoints();
         }   
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)
@@ -28,7 +31,17 @@ namespace SpaceShooter
         private void RespawnSpaceShip()
         {
             _playerContainer.SetActive(false);
-            SpaceShip ship = _spawner.SpawnSpaceShip();
+
+            Vector3 newShipPosition = _spawnPoints[_currentSpawnPoint].transform.position;
+            Quaternion newShipRotation = Quaternion.identity;
+
+            if (_currentSpawnPoint == 0)
+            {
+                int RandomRotation = Random.Range(0, 180);
+                newShipRotation = Quaternion.Euler(new Vector3(0, 0, RandomRotation));
+            }
+
+            SpaceShip ship = _spawner.SpawnSpaceShip(newShipPosition, newShipRotation);
             _playerScript = _playerContainer.GetComponent<Player>();
 
             if (ship != null)
@@ -42,6 +55,14 @@ namespace SpaceShooter
             }
 
         }
+
+        private void SubscribeToSpawnPoints()
+        {
+            foreach (var spawnPoint in _spawnPoints)            
+                spawnPoint.SpawnPointEnter += OnSpawnPointEnter;            
+        }
+
+        public void OnSpawnPointEnter(object spawnPoint, SpawnPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
 
     }
 }

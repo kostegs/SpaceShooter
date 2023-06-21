@@ -18,6 +18,7 @@ namespace SpaceShooter
 
             if (transform.position.magnitude > radius)
             {
+                Debug.Log($"magn: {transform.position.magnitude}, radius: {radius}");
                 if (lb.LimitMode == Mode.Limit)
                     transform.position = transform.position.normalized * radius;
                 else if (lb.LimitMode == Mode.Teleport)

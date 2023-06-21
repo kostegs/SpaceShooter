@@ -5,9 +5,11 @@ public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _spaceShipPrefab;
 
-    public SpaceShip SpawnSpaceShip()
+    public SpaceShip SpawnSpaceShip(Vector3 coordinates, Quaternion rotation)
     {
-        var ship = Instantiate(_spaceShipPrefab);
+        int RandomRotation = Random.Range(0, 180);
+
+        var ship = Instantiate(_spaceShipPrefab, coordinates, rotation);
 
         return ship.GetComponent<SpaceShip>();
     }
