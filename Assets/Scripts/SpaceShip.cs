@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace SpaceShooter
 {
@@ -81,10 +82,14 @@ namespace SpaceShooter
             _rigid.AddTorque(-_rigid.angularVelocity * (_mobility / _maxAngularVelocity) * Time.deltaTime, ForceMode2D.Force);
         }
 
-        private protected override void OnDeath()
-        {
-            ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, ExplosionParticleSystem, base.OnDeath);            
-        }       
+        private protected override void OnDeath() => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, ExplosionParticleSystem, base.OnDeath);
 
+        public void TuneHud(Transform target, Camera mainCamera)
+        {
+            var arrow = GetComponentInChildren<UIArrow>();
+
+            if (arrow != null) 
+                arrow.TuneHud(target, mainCamera);            
+        }
     }
 }

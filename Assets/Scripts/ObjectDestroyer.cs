@@ -29,8 +29,6 @@ public class ObjectDestroyer : MonoBehaviour
 
     IEnumerator DestroyGameObjectCoroutine(GameObject gameObject, float interval, ParticleSystem particleSystem, Action action)
     {
-        Debug.Log("CoroutineStarted");
-        
         if (particleSystem != null)
         {
             particleSystem.transform.position = gameObject.transform.position;
@@ -40,8 +38,7 @@ public class ObjectDestroyer : MonoBehaviour
         Destroy(gameObject);        
         
         yield return new WaitForSeconds(interval);        
-        action?.Invoke();
-        Debug.Log("After coroutine");
+        action?.Invoke();        
     }
 
 }

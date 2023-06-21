@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class UIArrow : MonoBehaviour
 {
-    [SerializeField] private Transform _spaceShip;
     [SerializeField] private Transform _UFO;
     [SerializeField] private Camera _camera;
     [SerializeField] private TMP_Text _distanceText;
 
+    private Transform _spaceShip;
     private Vector3 _leftRotation, _rightRotation;
     private Vector3 _downRotation, _upRotation;
 
@@ -18,7 +18,9 @@ public class UIArrow : MonoBehaviour
         _leftRotation = new Vector3(0f, 0f, 90f);
         _rightRotation = new Vector3(0f, 0f, -90f);
         _downRotation = new Vector3(0f, 0f, 180f);
-        _upRotation = Vector3.zero;        
+        _upRotation = Vector3.zero;
+
+        _spaceShip = transform.root;
     }
 
     private void FixedUpdate()
@@ -73,5 +75,11 @@ public class UIArrow : MonoBehaviour
             default:
                 return Vector3.zero;
         }
+    }
+
+    public void TuneHud(Transform target, Camera mainCamera)
+    {
+        _UFO = target;
+        _camera = mainCamera;
     }
 }
