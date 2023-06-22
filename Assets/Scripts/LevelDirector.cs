@@ -18,6 +18,7 @@ namespace SpaceShooter
         private Player _playerScript;
         private SpaceShip _spaceShip;
         private int _currentSpawnPoint = 1;
+        private bool _arrowActive = true;
 
         private void Start()
         {
@@ -53,6 +54,7 @@ namespace SpaceShooter
             if (_spaceShip != null)
             {
                 _spaceShip.TuneHud(_target, _mainCamera);
+                _spaceShip.ShowHideArrow(_arrowActive);
                 _playerScript.SetTarget(_spaceShip);
                 _spaceShip.OnDestruct += OnSpaceShipDestruct;
                 _spaceShip.ExplosionParticleSystem = _shipExplosionPS;
@@ -70,10 +72,15 @@ namespace SpaceShooter
 
         public void OnSpawnPointEnter(object spawnPoint,LevelPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
 
-        public void OnShowHideArrowPointEnter(object ShowHideArrowPoint, LevelPointEventArgs eventArgs) => _spaceShip.ShowHideArrow();
+        public void OnShowHideArrowPointEnter(object ShowHideArrowPoint, LevelPointEventArgs eventArgs)
+        {
+            _arrowActive = !_arrowActive;
+            _spaceShip.ShowHideArrow(_arrowActive);
+        } 
 
         public void OnPlatformStartAnimation(object sender, EventArgs eventArgs)
         {
+            _arrowActive = false;
             Debug.Log("Animation started");
         }
     }

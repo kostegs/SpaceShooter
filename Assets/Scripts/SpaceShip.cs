@@ -90,10 +90,10 @@ namespace SpaceShooter
 
         public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
 
-        public void ShowHideArrow()
+        public void ShowHideArrow(bool arrowState)
         {
             if (_UIArrow != null)
-                _UIArrow.gameObject.SetActive(!_UIArrow.gameObject.activeInHierarchy);
+                _UIArrow.gameObject.SetActive(arrowState);
         }
     }
 }
