@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -12,16 +13,18 @@ namespace SpaceShooter
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private LevelPoint[] _spawnPoints;
         [SerializeField] private LevelPoint _showHideArrowPoint;
+        [SerializeField] private Platform _platform;
 
         private Player _playerScript;
         private SpaceShip _spaceShip;
-        private int _currentSpawnPoint;
+        private int _currentSpawnPoint = 1;
 
         private void Start()
         {
             RespawnSpaceShip();
             SubscribeToSpawnPoints();
             _showHideArrowPoint.LevelPointEnter += OnShowHideArrowPointEnter;
+            _platform.PlatformStartAnimation += OnPlatformStartAnimation;
         }   
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)
@@ -40,7 +43,7 @@ namespace SpaceShooter
 
             if (_currentSpawnPoint == 0)
             {
-                int RandomRotation = Random.Range(0, 180);
+                int RandomRotation = UnityEngine.Random.Range(0, 180);
                 newShipRotation = Quaternion.Euler(new Vector3(0, 0, RandomRotation));
             }
 
@@ -67,9 +70,11 @@ namespace SpaceShooter
 
         public void OnSpawnPointEnter(object spawnPoint,LevelPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
 
-        public void OnShowHideArrowPointEnter(object ShowHideArrowPoint, LevelPointEventArgs eventArgs)
+        public void OnShowHideArrowPointEnter(object ShowHideArrowPoint, LevelPointEventArgs eventArgs) => _spaceShip.ShowHideArrow();
+
+        public void OnPlatformStartAnimation(object sender, EventArgs eventArgs)
         {
-            _spaceShip.ShowHideArrow();
+            Debug.Log("Animation started");
         }
     }
 }
