@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 41254003}
   - component: {fileID: 41254004}
   m_Layer: 0
-  m_Name: StartLevel
+  m_Name: SpawnPoint_StartLevel
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -541,6 +541,8 @@ MonoBehaviour:
   _spawnPoints:
   - {fileID: 41254004}
   - {fileID: 1903153552}
+  - {fileID: 834145209}
+  _showHideArrowPoint: {fileID: 1548889917}
 --- !u!1 &418177292
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,7 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 600938676}
   m_Layer: 0
-  m_Name: SpawnPoints
+  m_Name: LevelPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -964,6 +966,8 @@ Transform:
   m_Children:
   - {fileID: 41254003}
   - {fileID: 1903153551}
+  - {fileID: 834145208}
+  - {fileID: 1548889916}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6047,6 +6051,78 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &834145207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834145208}
+  - component: {fileID: 834145210}
+  - component: {fileID: 834145209}
+  m_Layer: 0
+  m_Name: SpawnPoint_UFO_Inside
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &834145208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834145207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 45.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 600938676}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &834145209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834145207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3122e55e697d0404bb0032dc2e8325c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPointNumber: 2
+--- !u!61 &834145210
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834145207}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.8697433, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.7770996, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &851498169
 GameObject:
   m_ObjectHideFlags: 0
@@ -6972,6 +7048,106 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1548889915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548889916}
+  - component: {fileID: 1548889918}
+  - component: {fileID: 1548889917}
+  m_Layer: 0
+  m_Name: LevelPoint_HideArrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548889916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548889915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 40.229, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 600938676}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1548889917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548889915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3122e55e697d0404bb0032dc2e8325c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPointNumber: 0
+--- !u!68 &1548889918
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548889915}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.0242321, y: 1.7497253}
+  - {x: -2.0286806, y: -3.229023}
+  - {x: -0.8434474, y: -3.2285995}
+  - {x: -0.1504041, y: -3.2292633}
+  - {x: 0.8485218, y: -3.2290115}
+  - {x: 1.1051854, y: -3.2283287}
+  - {x: 1.112594, y: -3.2286377}
+  - {x: 1.1660131, y: -3.2287788}
+  - {x: 1.2486415, y: -3.2290802}
+  - {x: 1.3459705, y: -3.229248}
+  - {x: 1.446807, y: -3.2290459}
+  - {x: 2.8477259, y: -3.2293472}
+  - {x: 2.8900754, y: -3.2291603}
+  - {x: 3.5952473, y: -3.2292595}
+  - {x: 3.6094706, y: -3.2290306}
+  - {x: 3.6167884, y: -3.2290115}
+  - {x: 3.6308217, y: -3.2292976}
+  - {x: 3.671981, y: -3.2293968}
+  - {x: 3.708786, y: -3.229168}
+  - {x: 3.728069, y: -3.2293892}
+  - {x: 3.8060365, y: -3.2293587}
+  - {x: 3.8168418, y: -3.2292366}
+  - {x: 3.8217409, y: -3.2289124}
+  - {x: 3.8322988, y: -3.2290192}
+  - {x: 3.8446772, y: -3.2290955}
+  - {x: 3.8655987, y: -3.2290115}
+  - {x: 3.9817212, y: -3.2289505}
+  - {x: 4.07862, y: -3.2290955}
+  - {x: 4.2834477, y: -3.2292976}
+  - {x: 4.4351835, y: -3.2288322}
+  - {x: 4.6796, y: -3.228859}
+  - {x: 5.0075774, y: -3.22937}
+  - {x: 5.0075994, y: -3.1999664}
+  - {x: 4.9932933, y: 1.790554}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1639033137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7595,7 +7771,7 @@ GameObject:
   - component: {fileID: 1903153553}
   - component: {fileID: 1903153552}
   m_Layer: 0
-  m_Name: UFO_Gates
+  m_Name: SpawnPoint_UFO_Gates
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

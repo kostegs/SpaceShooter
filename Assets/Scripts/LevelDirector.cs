@@ -10,15 +10,18 @@ namespace SpaceShooter
         [SerializeField] private ParticleSystem _shipExplosionPS;
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _mainCamera;
-        [SerializeField] private SpawnPoint[] _spawnPoints;
+        [SerializeField] private LevelPoint[] _spawnPoints;
+        [SerializeField] private LevelPoint _showHideArrowPoint;
 
         private Player _playerScript;
+        private SpaceShip _spaceShip;
         private int _currentSpawnPoint;
 
         private void Start()
         {
             RespawnSpaceShip();
             SubscribeToSpawnPoints();
+            _showHideArrowPoint.LevelPointEnter += OnShowHideArrowPointEnter;
         }   
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)
@@ -41,15 +44,15 @@ namespace SpaceShooter
                 newShipRotation = Quaternion.Euler(new Vector3(0, 0, RandomRotation));
             }
 
-            SpaceShip ship = _spawner.SpawnSpaceShip(newShipPosition, newShipRotation);
+            _spaceShip = _spawner.SpawnSpaceShip(newShipPosition, newShipRotation);
             _playerScript = _playerContainer.GetComponent<Player>();
 
-            if (ship != null)
+            if (_spaceShip != null)
             {
-                ship.TuneHud(_target, _mainCamera);
-                _playerScript.SetTarget(ship);
-                ship.OnDestruct += OnSpaceShipDestruct;
-                ship.ExplosionParticleSystem = _shipExplosionPS;
+                _spaceShip.TuneHud(_target, _mainCamera);
+                _playerScript.SetTarget(_spaceShip);
+                _spaceShip.OnDestruct += OnSpaceShipDestruct;
+                _spaceShip.ExplosionParticleSystem = _shipExplosionPS;
 
                 _playerContainer.SetActive(true);
             }
@@ -59,10 +62,14 @@ namespace SpaceShooter
         private void SubscribeToSpawnPoints()
         {
             foreach (var spawnPoint in _spawnPoints)            
-                spawnPoint.SpawnPointEnter += OnSpawnPointEnter;            
+                spawnPoint.LevelPointEnter += OnSpawnPointEnter;            
         }
 
-        public void OnSpawnPointEnter(object spawnPoint, SpawnPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
+        public void OnSpawnPointEnter(object spawnPoint,LevelPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
 
+        public void OnShowHideArrowPointEnter(object ShowHideArrowPoint, LevelPointEventArgs eventArgs)
+        {
+            _spaceShip.ShowHideArrow();
+        }
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace SpaceShooter
 {
@@ -36,7 +33,9 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] private float _maxAngularVelocity;
 
-        private Rigidbody2D _rigid;
+        [SerializeField] private UIArrow _UIArrow;
+
+        private Rigidbody2D _rigid;        
 
         #region Public API
 
@@ -60,12 +59,17 @@ namespace SpaceShooter
 
             _rigid = GetComponent<Rigidbody2D>();
             _rigid.mass = _mass;
-            _rigid.inertia = 1;
+            _rigid.inertia = 1;            
         }        
 
         private void FixedUpdate()
         {
             UpdateRigidbody();
+        }
+
+        private void Update()
+        {
+
         }
 
         #endregion
@@ -84,12 +88,12 @@ namespace SpaceShooter
 
         private protected override void OnDeath() => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, ExplosionParticleSystem, base.OnDeath);
 
-        public void TuneHud(Transform target, Camera mainCamera)
-        {
-            var arrow = GetComponentInChildren<UIArrow>();
+        public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
 
-            if (arrow != null) 
-                arrow.TuneHud(target, mainCamera);            
+        public void ShowHideArrow()
+        {
+            if (_UIArrow != null)
+                _UIArrow.gameObject.SetActive(!_UIArrow.gameObject.activeInHierarchy);
         }
     }
 }

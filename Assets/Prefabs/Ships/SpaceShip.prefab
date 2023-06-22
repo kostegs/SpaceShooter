@@ -477,6 +477,7 @@ MonoBehaviour:
   _mobility: 2000
   _maxLinearVelocity: 15
   _maxAngularVelocity: 100
+  _UIArrow: {fileID: 1903805288}
 --- !u!96 &16476547
 TrailRenderer:
   serializedVersion: 2

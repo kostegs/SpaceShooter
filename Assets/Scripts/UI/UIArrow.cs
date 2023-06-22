@@ -11,7 +11,7 @@ public class UIArrow : MonoBehaviour
     private Vector3 _leftRotation, _rightRotation;
     private Vector3 _downRotation, _upRotation;
 
-    private Vector2 _fromPlayerToEnemy;
+    public Vector2 DistanceFromPlayerToEnemy { get; private set; }
 
     private void Start()
     {
@@ -25,11 +25,11 @@ public class UIArrow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _fromPlayerToEnemy = _UFO.position - _spaceShip.position;
+        DistanceFromPlayerToEnemy = _UFO.position - _spaceShip.position;
 
-        _distanceText.text = ((int)_fromPlayerToEnemy.magnitude).ToString();
+        _distanceText.text = ((int)DistanceFromPlayerToEnemy.magnitude).ToString();
 
-        Ray ray = new Ray(_spaceShip.position, _fromPlayerToEnemy);
+        Ray ray = new Ray(_spaceShip.position, DistanceFromPlayerToEnemy);
         
         // [0] = Left; [1] = Right; [2] = Down; [3] = Up
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(_camera);
@@ -49,7 +49,7 @@ public class UIArrow : MonoBehaviour
             }
         }
 
-        minDistance = Mathf.Clamp(minDistance, 0, _fromPlayerToEnemy.magnitude);
+        minDistance = Mathf.Clamp(minDistance, 0, DistanceFromPlayerToEnemy.magnitude);
         Vector2 worldPosition = ray.GetPoint(minDistance - 1.5f);
 
         transform.position = _camera.WorldToScreenPoint(worldPosition);
