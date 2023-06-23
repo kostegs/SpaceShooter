@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Platform
+    uniqueID: 1514634645
+    locked: 0
+  - name: UFO_Gates
+    uniqueID: 3829622469
+    locked: 0
+  - name: UFO
+    uniqueID: 642540387
+    locked: 0
+  - name: Ship
+    uniqueID: 1872660775
+    locked: 0

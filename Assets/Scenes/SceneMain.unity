@@ -5688,11 +5688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfLives: 3
-  _spaceShip: {fileID: 16476544}
-  _playerSpaceShipPrefab: {fileID: 2932375725569844465, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}
   _cameraController: {fileID: 1180250175}
   _movementController: {fileID: 1180250173}
-  _shipExplosionPS: {fileID: 735020724}
 --- !u!1 &1233174308
 GameObject:
   m_ObjectHideFlags: 0
@@ -6076,7 +6073,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
