@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -14,18 +15,23 @@ namespace SpaceShooter
         [SerializeField] private LevelPoint[] _spawnPoints;
         [SerializeField] private LevelPoint _showHideArrowPoint;
         [SerializeField] private Platform _platform;
+        [SerializeField] private Animator _gatesAnimator;
+        [SerializeField] private Animator _platformAnimator;
 
         private Player _playerScript;
         private SpaceShip _spaceShip;
         private int _currentSpawnPoint = 1;
         private bool _arrowActive = true;
 
+         
+
+
         private void Start()
         {
             RespawnSpaceShip();
             SubscribeToSpawnPoints();
             _showHideArrowPoint.LevelPointEnter += OnShowHideArrowPointEnter;
-            _platform.PlatformStartAnimation += OnPlatformStartAnimation;
+            _platform.PlatformStartAnimation += OnPlatformStartAnimation;                        
         }   
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)
@@ -81,7 +87,17 @@ namespace SpaceShooter
         public void OnPlatformStartAnimation(object sender, EventArgs eventArgs)
         {
             _arrowActive = false;
-            Debug.Log("Animation started");
+            StartCoroutine(OpenGatesAnimation());
+        }
+
+        IEnumerator OpenGatesAnimation()
+        {
+            _playerScript.gameObject.SetActive(false);
+            _gatesAnimator.enabled = true;
+            _platformAnimator.enabled = true;
+            yield return new WaitForSeconds(5);
+            _playerScript.gameObject.SetActive(true);
+
         }
     }
 }
