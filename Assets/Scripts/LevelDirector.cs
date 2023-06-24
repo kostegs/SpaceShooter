@@ -18,13 +18,14 @@ namespace SpaceShooter
         [SerializeField] private Animator _gatesAnimator;
         [SerializeField] private Animator _platformAnimator;
         [SerializeField] private SpriteRenderer _enterPlatformSpriteRenderer;
+        [SerializeField] private LevelPoint _shipInPlatformCentre;
+        [SerializeField] private LevelPoint _shipIntoUFO;
 
         private Player _playerScript;
         private SpaceShip _spaceShip;
         private int _currentSpawnPoint = 1;
         private bool _arrowActive = true;
 
-         
 
 
         private void Start()
@@ -98,8 +99,47 @@ namespace SpaceShooter
             _platformAnimator.enabled = true;
             yield return new WaitForSeconds(5);
             yield return StartCoroutine(SetAlfa());
+
+            Vector2 goalPosition = _shipInPlatformCentre.transform.position;
+            float estimatedTime = 1.5f;
+            yield return StartCoroutine(MoveShipIntoUFO(goalPosition, estimatedTime));
+
+            estimatedTime = 3.0f;
+            goalPosition = _shipIntoUFO.transform.position;
+            yield return StartCoroutine(MoveShipIntoUFO(goalPosition, estimatedTime));
+
             _playerScript.gameObject.SetActive(true);
 
+            yield return new WaitForSeconds(2);
+
+            // return gates to normal state
+            var animatorState = _gatesAnimator.GetCurrentAnimatorStateInfo(0);
+            _gatesAnimator.Play(animatorState.shortNameHash, -1, 0f);
+
+            yield return new WaitForSeconds(1);
+            _gatesAnimator.enabled = false;
+
+        }
+
+        IEnumerator MoveShipIntoUFO(Vector2 goalPosition, float timeForMoving)
+        {
+            Transform shipTransform = _spaceShip.transform;
+            shipTransform.rotation = Quaternion.identity;
+
+            Vector2 startPos = shipTransform.position;            
+            float elapsedTime = 0;            
+            float delta = 0;
+            
+            while (elapsedTime < timeForMoving)
+            {
+                delta = elapsedTime / timeForMoving;
+
+                shipTransform.position = Vector2.Lerp(startPos, goalPosition, delta);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            shipTransform.position = goalPosition;            
         }
 
         IEnumerator SetAlfa()
@@ -121,5 +161,6 @@ namespace SpaceShooter
             color.a = 0;
             _enterPlatformSpriteRenderer.color = color;
         }
+     
     }
 }
