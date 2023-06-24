@@ -17,6 +17,7 @@ namespace SpaceShooter
         [SerializeField] private Platform _platform;
         [SerializeField] private Animator _gatesAnimator;
         [SerializeField] private Animator _platformAnimator;
+        [SerializeField] private SpriteRenderer _enterPlatformSpriteRenderer;
 
         private Player _playerScript;
         private SpaceShip _spaceShip;
@@ -96,8 +97,29 @@ namespace SpaceShooter
             _gatesAnimator.enabled = true;
             _platformAnimator.enabled = true;
             yield return new WaitForSeconds(5);
+            yield return StartCoroutine(SetAlfa());
             _playerScript.gameObject.SetActive(true);
 
+        }
+
+        IEnumerator SetAlfa()
+        {
+            float elapsedTime = 0;
+            float duration = 3.0f;
+            float startValue = _enterPlatformSpriteRenderer.color.a;
+
+            Color color = _enterPlatformSpriteRenderer.color;
+
+            while (elapsedTime < duration)
+            {
+                color.a = Mathf.Lerp(startValue, 0, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                _enterPlatformSpriteRenderer.color = color;
+                yield return null;
+            }
+
+            color.a = 0;
+            _enterPlatformSpriteRenderer.color = color;
         }
     }
 }
