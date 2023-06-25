@@ -1,5 +1,3 @@
-using SpaceShooter;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SpaceShooter

@@ -1,24 +1,24 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Platform : MonoBehaviour
+namespace SpaceShooter
 {
-    [SerializeField] private GameObject _uiTextPressButton;
 
-    public event EventHandler<EventArgs> PlatformStartAnimation;
-
-    private bool _animationStarted;
-
-    private void OnTriggerEnter2D(Collider2D other) => _uiTextPressButton.SetActive(true);
-
-    private void OnTriggerExit2D() => _uiTextPressButton.SetActive(false);
-
-    private void OnTriggerStay2D(Collider2D collision)
+    public class Platform : MonoBehaviour
     {
-        if (_animationStarted == false)
+        [SerializeField] private GameObject _uiTextPressButton;
+
+        public event EventHandler<EventArgs> PlatformStartAnimation;
+
+        private bool _animationStarted;
+
+        private void OnTriggerEnter2D(Collider2D other) => _uiTextPressButton.SetActive(true);
+
+        private void OnTriggerExit2D() => _uiTextPressButton.SetActive(false);
+
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (_animationStarted == false && Input.GetKey(KeyCode.E))
             {
                 _animationStarted = true;
                 _uiTextPressButton.SetActive(false);

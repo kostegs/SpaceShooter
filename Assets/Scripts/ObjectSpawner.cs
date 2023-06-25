@@ -1,16 +1,20 @@
 using SpaceShooter;
 using UnityEngine;
 
-public class ObjectSpawner : MonoBehaviour
+namespace SpaceShooter
 {
-    [SerializeField] private GameObject _spaceShipPrefab;
 
-    public SpaceShip SpawnSpaceShip(Vector3 coordinates, Quaternion rotation)
+    public class ObjectSpawner : MonoBehaviour
     {
-        int RandomRotation = Random.Range(0, 180);
+        [SerializeField] private GameObject _spaceShipPrefab;
 
-        var ship = Instantiate(_spaceShipPrefab, coordinates, rotation);
+        public SpaceShip SpawnSpaceShip(Vector3 coordinates, Quaternion rotation)
+        {
+            int RandomRotation = Random.Range(0, 180);
 
-        return ship.GetComponent<SpaceShip>();
+            var ship = Instantiate(_spaceShipPrefab, coordinates, rotation);
+
+            return ship.GetComponent<SpaceShip>();
+        }
     }
 }

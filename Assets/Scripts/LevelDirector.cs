@@ -74,6 +74,9 @@ namespace SpaceShooter
                 _spaceShip.OnDestruct += OnSpaceShipDestruct;
                 _spaceShip.ExplosionParticleSystem = _shipExplosionPS;
 
+                if (_currentSpawnPoint >= 2)
+                    _spaceShip.GetComponentInChildren<UIArrow>().gameObject.SetActive(false);
+
                 _playerContainer.SetActive(true);
             }
 
@@ -195,7 +198,5 @@ namespace SpaceShooter
             imageColor.a = endValue;
             _blackScreenImage.color = imageColor;
         }
-
-
     }
 }

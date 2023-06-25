@@ -38,14 +38,8 @@ namespace SpaceShooter
         {
             UnityEditor.Handles.color = Color.green;
             UnityEditor.Handles.DrawWireDisc(transform.position, transform.forward, _radius);
-        }
-        private void OnDrawGizmosSelected()
-        {
-            
-        }
+        }  
 
 #endif
-
-
     }
 }

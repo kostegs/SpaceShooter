@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class SyncTransform : MonoBehaviour
+namespace SpaceShooter
 {
-    [SerializeField] private Transform _target;
 
-    private void Update()
+    public class SyncTransform : MonoBehaviour
     {
-        transform.position = new Vector3(_target.position.x, _target.position.y, transform.position.z);
+        [SerializeField] private Transform _target;
+
+        private void Update() => transform.position = new Vector3(_target.position.x, _target.position.y, transform.position.z);
     }
 }

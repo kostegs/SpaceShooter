@@ -2479,7 +2479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168600482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 82.79, z: 0}
+  m_LocalPosition: {x: -0.39, y: 82.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20361,7 +20361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2590d661dc9acff41bee0b00da2bef3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfLives: 3
+  _numberOfLives: 10
   _cameraController: {fileID: 1180250175}
   _movementController: {fileID: 1180250173}
 --- !u!1 &1181767697

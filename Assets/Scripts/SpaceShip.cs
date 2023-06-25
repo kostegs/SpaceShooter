@@ -62,15 +62,7 @@ namespace SpaceShooter
             _rigid.inertia = 1;            
         }        
 
-        private void FixedUpdate()
-        {
-            UpdateRigidbody();
-        }
-
-        private void Update()
-        {
-
-        }
+        private void FixedUpdate() => UpdateRigidbody();
 
         #endregion
 

@@ -41,10 +41,7 @@ namespace SpaceShooter
             OnJoystickUsed?.Invoke();
         }
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            OnDrag(eventData);
-        }
+        public void OnPointerDown(PointerEventData eventData) => OnDrag(eventData);
 
         public void OnPointerUp(PointerEventData eventData)
         {

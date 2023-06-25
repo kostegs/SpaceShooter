@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-
     public class SceneManager : MonoBehaviour
     {
         // Update is called once per frame
