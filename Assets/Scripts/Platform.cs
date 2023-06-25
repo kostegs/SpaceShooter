@@ -23,9 +23,7 @@ public class Platform : MonoBehaviour
                 _animationStarted = true;
                 _uiTextPressButton.SetActive(false);
                 PlatformStartAnimation?.Invoke(this, new EventArgs());
-
             }
         }
     }
-
 }

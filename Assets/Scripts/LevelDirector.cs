@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 namespace SpaceShooter
 {
@@ -13,7 +15,8 @@ namespace SpaceShooter
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private LevelPoint[] _spawnPoints;
-        [SerializeField] private LevelPoint _showHideArrowPoint;
+
+        [Header("UFO Platform Animation")]
         [SerializeField] private Platform _platform;
         [SerializeField] private Animator _gatesAnimator;
         [SerializeField] private Animator _platformAnimator;
@@ -21,18 +24,23 @@ namespace SpaceShooter
         [SerializeField] private LevelPoint _shipInPlatformCentre;
         [SerializeField] private LevelPoint _shipIntoUFO;
 
+        [Header("End Platform Animation")]
+        [SerializeField] private Platform _endPlatform;
+        [SerializeField] private Collider2D _wallCollider;
+        [SerializeField] private LevelPoint _endLevelPoint;        
+        [SerializeField] private Image _blackScreenImage;
+
         private Player _playerScript;
         private SpaceShip _spaceShip;
-        private int _currentSpawnPoint = 1;
-        private bool _arrowActive = true;
-
-
+        private int _currentSpawnPoint = 3;
+        
 
         private void Start()
         {
             RespawnSpaceShip();
             SubscribeToSpawnPoints();            
-            _platform.PlatformStartAnimation += OnPlatformStartAnimation;                        
+            _platform.PlatformStartAnimation += OnPlatformStartAnimation;
+            _endPlatform.PlatformStartAnimation += OnEndPlatformStartAnimation;
         }   
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)
@@ -79,11 +87,9 @@ namespace SpaceShooter
         public void OnSpawnPointEnter(object spawnPoint,LevelPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
 
         
-        public void OnPlatformStartAnimation(object sender, EventArgs eventArgs)
-        {
-            _arrowActive = false;
-            StartCoroutine(OpenGatesAnimation());
-        }
+        public void OnPlatformStartAnimation(object sender, EventArgs eventArgs) => StartCoroutine(OpenGatesAnimation());
+
+        public void OnEndPlatformStartAnimation(object sender, EventArgs eventArgs) => StartCoroutine(EndLevelAnimation());
 
         IEnumerator OpenGatesAnimation()
         {
@@ -155,6 +161,41 @@ namespace SpaceShooter
             color.a = 0;
             _enterPlatformSpriteRenderer.color = color;
         }
-     
+
+        IEnumerator EndLevelAnimation()
+        {
+            _playerScript.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2);
+            _wallCollider.enabled = false;
+
+            Vector2 goalPosition = _endLevelPoint.transform.position;
+            float estimatedTime = 3.0f;
+            yield return StartCoroutine(MoveShipIntoUFO(goalPosition, estimatedTime));
+
+            _spaceShip.GetComponentInChildren<Light2D>().enabled = false;
+            yield return StartCoroutine(SetBlackScreen());
+
+        }
+
+        IEnumerator SetBlackScreen()
+        {
+            float elapsedTime = 0;
+            float estimatedTime = 3.0f;
+            float startValue = 0;
+            Color imageColor = _blackScreenImage.color;
+
+            while (elapsedTime < estimatedTime)
+            {
+                imageColor.a = Mathf.Lerp(startValue, 1, elapsedTime / estimatedTime);
+                _blackScreenImage.color = imageColor;
+                elapsedTime += Time.deltaTime;                
+                yield return null;
+            }
+
+            imageColor.a = 1;
+            _blackScreenImage.color = imageColor;
+        }
+
+
     }
 }
