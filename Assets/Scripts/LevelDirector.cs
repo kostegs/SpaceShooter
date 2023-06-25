@@ -32,11 +32,12 @@ namespace SpaceShooter
 
         private Player _playerScript;
         private SpaceShip _spaceShip;
-        private int _currentSpawnPoint = 3;
+        private int _currentSpawnPoint = 0;
         
 
         private void Start()
         {
+            StartCoroutine(SetBlackScreen(1, 0));
             RespawnSpaceShip();
             SubscribeToSpawnPoints();            
             _platform.PlatformStartAnimation += OnPlatformStartAnimation;
@@ -173,26 +174,25 @@ namespace SpaceShooter
             yield return StartCoroutine(MoveShipIntoUFO(goalPosition, estimatedTime));
 
             _spaceShip.GetComponentInChildren<Light2D>().enabled = false;
-            yield return StartCoroutine(SetBlackScreen());
+            yield return StartCoroutine(SetBlackScreen(0, 1));
 
         }
 
-        IEnumerator SetBlackScreen()
+        IEnumerator SetBlackScreen(float startValue, float endValue)
         {
             float elapsedTime = 0;
             float estimatedTime = 3.0f;
-            float startValue = 0;
             Color imageColor = _blackScreenImage.color;
 
             while (elapsedTime < estimatedTime)
             {
-                imageColor.a = Mathf.Lerp(startValue, 1, elapsedTime / estimatedTime);
+                imageColor.a = Mathf.Lerp(startValue, endValue, elapsedTime / estimatedTime);
                 _blackScreenImage.color = imageColor;
                 elapsedTime += Time.deltaTime;                
                 yield return null;
             }
 
-            imageColor.a = 1;
+            imageColor.a = endValue;
             _blackScreenImage.color = imageColor;
         }
 
