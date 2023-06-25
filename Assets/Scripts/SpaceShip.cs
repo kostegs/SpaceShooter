@@ -89,11 +89,6 @@ namespace SpaceShooter
         private protected override void OnDeath() => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, ExplosionParticleSystem, base.OnDeath);
 
         public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
-
-        public void ShowHideArrow(bool arrowState)
-        {
-            if (_UIArrow != null)
-                _UIArrow.gameObject.SetActive(arrowState);
-        }
+                
     }
 }

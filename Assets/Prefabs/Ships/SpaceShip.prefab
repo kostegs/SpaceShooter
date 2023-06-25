@@ -398,6 +398,8 @@ MonoBehaviour:
   _UFO: {fileID: 0}
   _camera: {fileID: 0}
   _distanceText: {fileID: 364133195}
+  _arrowImage: {fileID: 960828307}
+  _arrowIndex: 0
 --- !u!1 &2932375725569844465
 GameObject:
   m_ObjectHideFlags: 0

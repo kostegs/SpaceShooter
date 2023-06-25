@@ -1,16 +1,19 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIArrow : MonoBehaviour
 {
     [SerializeField] private Transform _UFO;
     [SerializeField] private Camera _camera;
     [SerializeField] private TMP_Text _distanceText;
-
+    [SerializeField] private Image _arrowImage;
+    
     private Transform _spaceShip;
     private Vector3 _leftRotation, _rightRotation;
     private Vector3 _downRotation, _upRotation;
-
+    private bool _arrowIsHided;
+    
     public Vector2 DistanceFromPlayerToEnemy { get; private set; }
 
     private void Start()
@@ -20,14 +23,27 @@ public class UIArrow : MonoBehaviour
         _downRotation = new Vector3(0f, 0f, 180f);
         _upRotation = Vector3.zero;
 
-        _spaceShip = transform.root;
+        _spaceShip = transform.root;        
     }
 
     private void FixedUpdate()
     {
         DistanceFromPlayerToEnemy = _UFO.position - _spaceShip.position;
 
-        _distanceText.text = ((int)DistanceFromPlayerToEnemy.magnitude).ToString();
+        float intDistance = (int)DistanceFromPlayerToEnemy.magnitude;
+
+        if (intDistance >= 5 && _arrowIsHided)
+            ArrowVisibleState(true);
+        else if (intDistance < 5 && !_arrowIsHided)
+        {
+            ArrowVisibleState(false);
+            return;
+        }
+        else if (intDistance < 5 && _arrowIsHided) // Do nothing
+            return;
+            
+
+        _distanceText.text = intDistance.ToString();
 
         Ray ray = new Ray(_spaceShip.position, DistanceFromPlayerToEnemy);
         
@@ -59,6 +75,13 @@ public class UIArrow : MonoBehaviour
         transform.rotation = Quaternion.Euler(eulerRotation);
         _distanceText.transform.rotation = Quaternion.Euler(eulerRotation * 4);
     }
+
+    private void ArrowVisibleState(bool state)
+    {
+        _distanceText.enabled = state;
+        _arrowImage.enabled = state;
+        _arrowIsHided = state == false;
+    }    
     
     Vector3 GetEulerRotation(int planeIndex)
     {

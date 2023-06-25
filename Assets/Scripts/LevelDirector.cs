@@ -31,8 +31,7 @@ namespace SpaceShooter
         private void Start()
         {
             RespawnSpaceShip();
-            SubscribeToSpawnPoints();
-            _showHideArrowPoint.LevelPointEnter += OnShowHideArrowPointEnter;
+            SubscribeToSpawnPoints();            
             _platform.PlatformStartAnimation += OnPlatformStartAnimation;                        
         }   
 
@@ -61,8 +60,7 @@ namespace SpaceShooter
 
             if (_spaceShip != null)
             {
-                _spaceShip.TuneHud(_target, _mainCamera);
-                _spaceShip.ShowHideArrow(_arrowActive);
+                _spaceShip.TuneHud(_target, _mainCamera);                
                 _playerScript.SetTarget(_spaceShip);
                 _spaceShip.OnDestruct += OnSpaceShipDestruct;
                 _spaceShip.ExplosionParticleSystem = _shipExplosionPS;
@@ -80,12 +78,7 @@ namespace SpaceShooter
 
         public void OnSpawnPointEnter(object spawnPoint,LevelPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
 
-        public void OnShowHideArrowPointEnter(object ShowHideArrowPoint, LevelPointEventArgs eventArgs)
-        {
-            _arrowActive = !_arrowActive;
-            _spaceShip.ShowHideArrow(_arrowActive);
-        } 
-
+        
         public void OnPlatformStartAnimation(object sender, EventArgs eventArgs)
         {
             _arrowActive = false;
@@ -108,6 +101,7 @@ namespace SpaceShooter
             goalPosition = _shipIntoUFO.transform.position;
             yield return StartCoroutine(MoveShipIntoUFO(goalPosition, estimatedTime));
 
+            _spaceShip.GetComponentInChildren<UIArrow>().enabled = false;
             _playerScript.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(2);
