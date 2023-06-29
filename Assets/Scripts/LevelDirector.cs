@@ -37,7 +37,7 @@ namespace SpaceShooter
 
         private void Start()
         {
-            StartCoroutine(SetBlackScreen(1, 0));
+            StartCoroutine(SetBlackScreen(1, 0, false));            
             RespawnSpaceShip();
             SubscribeToSpawnPoints();            
             _platform.PlatformStartAnimation += OnPlatformStartAnimation;
@@ -89,8 +89,7 @@ namespace SpaceShooter
         }
 
         public void OnSpawnPointEnter(object spawnPoint,LevelPointEventArgs eventArgs) => _currentSpawnPoint = eventArgs._spawnPointNumber;
-
-        
+                
         public void OnPlatformStartAnimation(object sender, EventArgs eventArgs) => StartCoroutine(OpenGatesAnimation());
 
         public void OnEndPlatformStartAnimation(object sender, EventArgs eventArgs) => StartCoroutine(EndLevelAnimation());
@@ -177,11 +176,12 @@ namespace SpaceShooter
             yield return StartCoroutine(MoveShipIntoUFO(goalPosition, estimatedTime));
 
             _spaceShip.GetComponentInChildren<Light2D>().enabled = false;
-            yield return StartCoroutine(SetBlackScreen(0, 1));
 
+            _blackScreenImage.gameObject.SetActive(true);
+            yield return StartCoroutine(SetBlackScreen(0, 1, true));
         }
 
-        IEnumerator SetBlackScreen(float startValue, float endValue)
+        IEnumerator SetBlackScreen(float startValue, float endValue, bool activeInTheEnd)
         {
             float elapsedTime = 0;
             float estimatedTime = 3.0f;
@@ -197,6 +197,7 @@ namespace SpaceShooter
 
             imageColor.a = endValue;
             _blackScreenImage.color = imageColor;
+            _blackScreenImage.gameObject.SetActive(activeInTheEnd);
         }
     }
 }

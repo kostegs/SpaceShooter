@@ -34,6 +34,7 @@ namespace SpaceShooter
         [SerializeField] private float _maxAngularVelocity;
 
         [SerializeField] private UIArrow _UIArrow;
+        [SerializeField] private Turret[] _turrets;
 
         private Rigidbody2D _rigid;        
 
@@ -76,6 +77,15 @@ namespace SpaceShooter
 
             _rigid.AddTorque(TorqueControl * _mobility * Time.deltaTime, ForceMode2D.Force);
             _rigid.AddTorque(-_rigid.angularVelocity * (_mobility / _maxAngularVelocity) * Time.deltaTime, ForceMode2D.Force);
+        }
+
+        public void Fire(TurretMode mode)
+        {
+            foreach (Turret turret in _turrets)
+            {
+                if (turret.Mode == mode)
+                    turret.Fire();
+            }
         }
 
         private protected override void OnDeath() => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, ExplosionParticleSystem, base.OnDeath);

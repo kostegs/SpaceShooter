@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PointerClickHold : MonoBehaviour
+public class PointerClickHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool IsHold { get; private set; }
+
+    public void OnPointerDown(PointerEventData eventData)
     {
-        
+        IsHold = true;    
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerUp(PointerEventData eventData)
     {
-        
+        IsHold = false;
     }
 }
