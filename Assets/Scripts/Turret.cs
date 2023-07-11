@@ -38,6 +38,7 @@ namespace SpaceShooter
                                                 .GetComponent<Projectile>();
 
             projectile.transform.up = transform.up;
+            projectile.SetParrentShooter(_ship);
 
             _refireTimer = _turretProperties.RateOfFire;
 
