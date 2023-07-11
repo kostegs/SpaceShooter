@@ -22,7 +22,7 @@ namespace SpaceShooter
         public Projectile ProjectilePrefab => _projectilePrefab;
         public float RateOfFire => _rateOfFire;
         public int EnergyUsage => _energyUsage;
-        public float AmmoUsage => _ammoUsage;
+        public int AmmoUsage => _ammoUsage;
         public AudioClip LaunchSFX => _launchSFX;
 
 

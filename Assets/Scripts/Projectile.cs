@@ -42,7 +42,7 @@ namespace SpaceShooter
             Destroy(gameObject);
         }
 
-        void SetParrentShooter(Destructible parent) => _parent = parent;
+        public void SetParrentShooter(Destructible parent) => _parent = parent;
 
     }
 }

@@ -15,6 +15,6 @@ MonoBehaviour:
   _mode: 0
   _projectilePrefab: {fileID: 8434864401757655724, guid: 6336765076d988443b45120c17e06cce, type: 3}
   _rateOfFire: 0.2
-  _energyUsage: 0
+  _energyUsage: 1
   _ammoUsage: 0
   _launchSFX: {fileID: 0}
