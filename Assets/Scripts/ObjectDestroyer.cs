@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-
     public class ObjectDestroyer : MonoBehaviour
     {
         #region Singleton

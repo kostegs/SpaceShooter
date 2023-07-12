@@ -10,6 +10,8 @@ namespace SpaceShooter
 
         private SpaceShip _spaceShip;
 
+        public SpaceShip ActiveShip => _spaceShip;
+
         public int NumberOfLives
         {
             get => _numberOfLives;

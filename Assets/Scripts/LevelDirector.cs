@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 namespace SpaceShooter
 {
-
     public class LevelDirector : MonoBehaviour
     {
         [SerializeField] private GameObject _playerContainer;

@@ -85,7 +85,7 @@ namespace SpaceShooter
                 _targetShip.Fire(TurretMode.Primary);
 
             if (Input.GetKey(KeyCode.X))
-                _targetShip.Fire(TurretMode.Primary);
+                _targetShip.Fire(TurretMode.Secondary);
 
 
 

@@ -31,7 +31,9 @@ namespace SpaceShooter
             if (_turretProperties == null || _refireTimer > 0)
                 return;
 
-            if (_ship.DrawEnergy(_turretProperties.EnergyUsage) == false)
+            if (_ship.DrawEnergy(_turretProperties.EnergyUsage) == false
+                ||
+                _ship.DrawAmmo(_turretProperties.AmmoUsage) == false)
                 return;
 
             Projectile projectile = Instantiate(_turretProperties.ProjectilePrefab, transform.position, Quaternion.identity)
