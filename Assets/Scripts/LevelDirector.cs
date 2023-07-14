@@ -9,7 +9,7 @@ namespace SpaceShooter
     public class LevelDirector : MonoBehaviour
     {
         [SerializeField] private GameObject _playerContainer;
-        [SerializeField] private ObjectSpawner _spawner;
+        [SerializeField] private SpaceShipSpawner _spawner;
         [SerializeField] private ParticleSystem _shipExplosionPS;
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _mainCamera;

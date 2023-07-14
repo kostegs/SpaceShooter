@@ -48,7 +48,10 @@ namespace SpaceShooter
             CurrentHitPoints -= damage;
 
             if (CurrentHitPoints <= 0)
+            {
                 OnDeath();
+                Destroy(gameObject);
+            }                
         }
 
         #endregion

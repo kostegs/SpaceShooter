@@ -1,9 +1,8 @@
-using SpaceShooter;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class ObjectSpawner : MonoBehaviour
+    public class SpaceShipSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject _spaceShipPrefab;
 
