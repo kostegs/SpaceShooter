@@ -26,15 +26,13 @@ namespace SpaceShooter
         public int CurrentHitPoints { get; private set; }
 
         public event EventHandler<EventArgs> OnDestruct;
+        public event EventHandler<EventArgs> OnHit;
 
         #endregion
 
         #region UnityEvents
 
-        protected virtual void Start()
-        {
-            CurrentHitPoints = HitPoints;
-        }
+        protected virtual void Start() => CurrentHitPoints = HitPoints;
 
         #endregion
 
@@ -46,6 +44,7 @@ namespace SpaceShooter
                 return;
 
             CurrentHitPoints -= damage;
+            OnHit?.Invoke(this, EventArgs.Empty);
 
             if (CurrentHitPoints <= 0)
             {
@@ -56,7 +55,7 @@ namespace SpaceShooter
 
         #endregion
 
-        private protected virtual void OnDeath() => OnDestruct?.Invoke(this, new EventArgs());
+        private protected virtual void OnDeath() => OnDestruct?.Invoke(this, EventArgs.Empty);
 
     }
 }
