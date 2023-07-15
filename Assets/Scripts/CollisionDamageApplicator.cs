@@ -15,11 +15,13 @@ namespace SpaceShooter
             if (collision.transform.tag == IgnoreTag)
                 return;
             
-            if (transform.root.TryGetComponent<Destructible>(out var destructible))
+            if ( (collision.gameObject.transform.root.TryGetComponent<Destructive>(out Destructive destructive))
+                  &&
+                  (transform.root.TryGetComponent<Destructible>(out var destructible)))
             {
-                int damage = (int)_damageConstant + (int)(_velocityDamageModifier * collision.relativeVelocity.magnitude);
+                int damage = (int)destructive.DamagePoints + (int)(_velocityDamageModifier * collision.relativeVelocity.magnitude);
                 destructible.ApplyDamage(damage);
-            }
+            }            
         }
 
     }
