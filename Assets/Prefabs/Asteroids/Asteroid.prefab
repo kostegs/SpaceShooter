@@ -110,8 +110,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042958413685818866}
-  - component: {fileID: 2042958413685818867}
   - component: {fileID: 2042958413685818860}
+  - component: {fileID: 5326500969005092211}
+  - component: {fileID: 8025230660686475468}
+  - component: {fileID: 1007832723237169485}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -135,21 +137,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2042958413685818867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042958413685818861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eac6602f8795be4aa4b57e9867f083a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nickName: 
-  _indestructible: 0
-  _hitPoints: 3000
 --- !u!50 &2042958413685818860
 Rigidbody2D:
   serializedVersion: 4
@@ -171,3 +158,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5326500969005092211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042958413685818861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e806d2b0a68243a4da7099c54201cb0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nickName: 
+  _indestructible: 0
+  _hitPoints: 3000
+  _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
+  _spriteRenderer: {fileID: 2042958413443465653}
+--- !u!114 &8025230660686475468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042958413685818861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b738836d01b0caa488ffd8a21d1cbcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destructiveProperties: {fileID: 11400000, guid: 9c8ec9cbbc7f07643877962023ee408f, type: 2}
+--- !u!114 &1007832723237169485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042958413685818861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2fccb03c490ff4fbed556224aa6d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _velocityDamageModifier: 10

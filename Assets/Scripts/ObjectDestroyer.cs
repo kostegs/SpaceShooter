@@ -22,21 +22,22 @@ namespace SpaceShooter
         }
         #endregion
 
-        public void DestroyGameObject(GameObject gameObject, float interval, ParticleSystem particleSystem, Action action)
-         => StartCoroutine(DestroyGameObjectCoroutine(gameObject, interval, particleSystem, action));
+        public void DestroyGameObject(GameObject gameObject, float interval, ParticleSystem particleSystem, SpriteRenderer spriteRenderer, Action action)
+           => StartCoroutine(DestroyGameObjectCoroutine(gameObject, interval, particleSystem, spriteRenderer, action));
         
 
-        IEnumerator DestroyGameObjectCoroutine(GameObject gameObject, float interval, ParticleSystem particleSystem, Action action)
+        IEnumerator DestroyGameObjectCoroutine(GameObject gameObject, float interval, ParticleSystem particleSystemPrefab, SpriteRenderer spriteRenderer, Action action)
         {
-            if (particleSystem != null)
+            spriteRenderer.enabled = false;
+            if (particleSystemPrefab != null)
             {
+                ParticleSystem particleSystem = Instantiate(particleSystemPrefab);
                 particleSystem.transform.position = gameObject.transform.position;
                 particleSystem.Play();
+                yield return new WaitForSeconds(interval);
             }
 
-            Destroy(gameObject);
-
-            yield return new WaitForSeconds(interval);
+            Destroy(gameObject);            
             action?.Invoke();
         }
     }

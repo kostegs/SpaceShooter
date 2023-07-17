@@ -9,7 +9,7 @@ namespace SpaceShooter
         [SerializeField] private CircleArea _circleArea;
         [SerializeField] private int _numberDebris;        
         [SerializeField] private float _randomSpeed;
-
+        
         private void Start()
         {
             foreach (var debris in _debrisPrefabs)
@@ -26,7 +26,9 @@ namespace SpaceShooter
             GameObject debris = Instantiate(_debrisPrefabs[index]).gameObject;
             
             debris.transform.position = _circleArea.GetRandomInsideZone();
-            debris.GetComponent<Destructible>().OnDestruct += OnDebrisDead;
+
+            Destructible destructible = debris.GetComponent<Destructible>();
+            destructible.OnDestruct += OnDebrisDead;            
 
             Rigidbody2D rb = debris.GetComponent <Rigidbody2D>();
 

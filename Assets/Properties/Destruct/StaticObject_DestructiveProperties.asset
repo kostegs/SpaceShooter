@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80766a440e6d4404a96f1851948c1f4b, type: 3}
   m_Name: StaticObject_DestructiveProperties
   m_EditorClassIdentifier: 
-  _damagePoints: 1000
+  _damagePoints: 10000

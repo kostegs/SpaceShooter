@@ -9,8 +9,7 @@ namespace SpaceShooter
     public class LevelDirector : MonoBehaviour
     {
         [SerializeField] private GameObject _playerContainer;
-        [SerializeField] private SpaceShipSpawner _spawner;
-        [SerializeField] private ParticleSystem _shipExplosionPS;
+        [SerializeField] private SpaceShipSpawner _spawner;        
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private LevelPoint[] _spawnPoints;
@@ -70,8 +69,7 @@ namespace SpaceShooter
             {
                 _spaceShip.TuneHud(_target, _mainCamera);                
                 _playerScript.SetTarget(_spaceShip);
-                _spaceShip.OnDestruct += OnSpaceShipDestruct;
-                _spaceShip.ExplosionParticleSystem = _shipExplosionPS;
+                _spaceShip.OnDestruct += OnSpaceShipDestruct;                
 
                 if (_currentSpawnPoint >= 2)
                     _spaceShip.GetComponentInChildren<UIArrow>().gameObject.SetActive(false);

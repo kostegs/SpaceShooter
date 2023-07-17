@@ -853,6 +853,7 @@ GameObject:
   - component: {fileID: 16476547}
   - component: {fileID: 2932375725723551480}
   - component: {fileID: 4189170667564814666}
+  - component: {fileID: 6174662606727778280}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -916,6 +917,8 @@ MonoBehaviour:
   _nickName: 
   _indestructible: 0
   _hitPoints: 100
+  _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
+  _spriteRenderer: {fileID: 2932375726205917484}
   _mass: 1
   _thrust: 1000
   _mobility: 2000
@@ -1050,7 +1053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocityDamageModifier: 0
-  _damageConstant: 20
 --- !u!114 &4189170667564814666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,6 +1065,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783e8705aa9c01041bf32b3c3329bcd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6174662606727778280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932375725569844465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b738836d01b0caa488ffd8a21d1cbcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destructiveProperties: {fileID: 11400000, guid: 73b657e5f992b8f48a62f52f317b1fb1, type: 2}
 --- !u!1 &2932375726205917474
 GameObject:
   m_ObjectHideFlags: 0
