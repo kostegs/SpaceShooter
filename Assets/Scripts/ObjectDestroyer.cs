@@ -35,6 +35,7 @@ namespace SpaceShooter
                 particleSystem.Play();                
                 Destroy(gameObject);
                 yield return new WaitForSeconds(interval);
+                Destroy(particleSystem.gameObject);
             }
             else
                 Destroy(gameObject);            
