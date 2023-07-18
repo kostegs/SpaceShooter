@@ -28,16 +28,17 @@ namespace SpaceShooter
 
         IEnumerator DestroyGameObjectCoroutine(GameObject gameObject, float interval, ParticleSystem particleSystemPrefab, SpriteRenderer spriteRenderer, Action action)
         {
-            spriteRenderer.enabled = false;
             if (particleSystemPrefab != null)
             {
                 ParticleSystem particleSystem = Instantiate(particleSystemPrefab);
                 particleSystem.transform.position = gameObject.transform.position;
-                particleSystem.Play();
+                particleSystem.Play();                
+                Destroy(gameObject);
                 yield return new WaitForSeconds(interval);
             }
+            else
+                Destroy(gameObject);            
 
-            Destroy(gameObject);            
             action?.Invoke();
         }
     }
