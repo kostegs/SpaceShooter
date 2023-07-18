@@ -48,7 +48,7 @@ MonoBehaviour:
   _nickName: 
   _velocity: 5
   _lifeTime: 3
-  _damage: 1000
+  _damage: 3000
   _impactEffectPrefab: {fileID: 0}
 --- !u!1 &7282923617205343955
 GameObject:
