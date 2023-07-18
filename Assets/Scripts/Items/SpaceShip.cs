@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -55,6 +56,14 @@ namespace SpaceShooter
         private float _primaryEnergy;
         private int _secondaryAmmo;
 
+        private float PrimaryEnergy { get => _primaryEnergy; 
+                                      set 
+                                      {
+                                        _primaryEnergy = value;
+                                        OnEnergyChanged?.Invoke(this, EventArgs.Empty);
+                                      }
+                                    }
+
         #region Public API
 
         /// <summary>
@@ -66,6 +75,16 @@ namespace SpaceShooter
         /// Rotation thrust control: -1.0 .. 1.0
         /// </summary>
         public float TorqueControl { get; set; }
+
+        /// <summary>
+        /// Energy count
+        /// </summary>
+        public float CurrentEnergy { get => _primaryEnergy; }
+
+        /// <summary>
+        /// Energy's changed - event
+        /// </summary>
+        public event EventHandler<EventArgs> OnEnergyChanged;
 
         #endregion
 
@@ -115,20 +134,20 @@ namespace SpaceShooter
 
         public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
 
-        public void AddEnergy(int energy) => _primaryEnergy = Mathf.Clamp(_primaryEnergy + energy, 0, _maxEnergy);        
+        public void AddEnergy(int energy) => PrimaryEnergy = Mathf.Clamp(PrimaryEnergy + energy, 0, _maxEnergy);        
         
         public void AddAmmo(int ammo) => _secondaryAmmo = Mathf.Clamp(_secondaryAmmo + ammo, 0, _maxAmmo);
 
         private void InitOffensive()
         {
-            _primaryEnergy = _maxEnergy;
+            PrimaryEnergy = _maxEnergy;
             _secondaryAmmo = _maxAmmo;
         }
 
         private void UpdateEnergyRegen()
         {
-            _primaryEnergy += (float)_energyRegenPerSecond * Time.fixedDeltaTime;
-            _primaryEnergy = Mathf.Clamp(_primaryEnergy, 0, _maxEnergy);
+            PrimaryEnergy += (float)_energyRegenPerSecond * Time.fixedDeltaTime;
+            PrimaryEnergy = Mathf.Clamp(PrimaryEnergy, 0, _maxEnergy);
         }
 
         public bool DrawAmmo(int count)
@@ -150,9 +169,9 @@ namespace SpaceShooter
             if (count == 0)
                 return true;
 
-            if (_primaryEnergy >= count)
+            if (PrimaryEnergy >= count)
             {
-                _primaryEnergy -= count;
+                PrimaryEnergy -= count;
                 return true;
             }
 

@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-
     public class UISpaceShipHealth : MonoBehaviour
     {
         [SerializeField] private SpaceShip _ship;
