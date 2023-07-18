@@ -9312,25 +9312,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &748443935 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 630055810457445110, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}
-  m_PrefabInstance: {fileID: 2932375725723551477}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &748443937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748443935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08822634645abfe48b427d24b3487b19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ship: {fileID: 16476544}
-  _energyText: {fileID: 1600851734}
 --- !u!1 &770072431
 GameObject:
   m_ObjectHideFlags: 0
@@ -13086,7 +13067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971c3a103ae43a44d96750c345377b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 105.14
+  _radius: 100
 --- !u!114 &1027122041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13102,7 +13083,7 @@ MonoBehaviour:
   _debrisPrefabs:
   - {fileID: 5326500969005092211, guid: d255f89d14d6bc04bbdb661dbe91d6d5, type: 3}
   _circleArea: {fileID: 1027122040}
-  _numberDebris: 5
+  _numberDebris: 20
   _randomSpeed: 1
 --- !u!1 &1030943800
 GameObject:
@@ -20818,17 +20799,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1600851734 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4001674891197305049, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}
-  m_PrefabInstance: {fileID: 2932375725723551477}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1614379444
 GameObject:
   m_ObjectHideFlags: 0
@@ -29020,7 +28990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2932375725569844465, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}

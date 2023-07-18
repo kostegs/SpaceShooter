@@ -64,6 +64,14 @@ namespace SpaceShooter
                                       }
                                     }
 
+        private int SecondaryAmmo { get => _secondaryAmmo;
+                                      set 
+                                      {
+                                        _secondaryAmmo = value;
+                                        OnAmmoChanged?.Invoke(this, EventArgs.Empty);  
+                                      }             
+                                    }
+
         #region Public API
 
         /// <summary>
@@ -77,14 +85,24 @@ namespace SpaceShooter
         public float TorqueControl { get; set; }
 
         /// <summary>
-        /// Energy count
+        /// Energy counter
         /// </summary>
         public float CurrentEnergy { get => _primaryEnergy; }
+
+        /// <summary>
+        /// Ammo counter
+        /// </summary>  
+        public int CurrentAmmo { get => _secondaryAmmo; }
 
         /// <summary>
         /// Energy's changed - event
         /// </summary>
         public event EventHandler<EventArgs> OnEnergyChanged;
+
+        /// <summary>
+        /// Ammo's changed - event
+        public event EventHandler<EventArgs> OnAmmoChanged;
+        /// </summary>
 
         #endregion
 
@@ -136,12 +154,12 @@ namespace SpaceShooter
 
         public void AddEnergy(int energy) => PrimaryEnergy = Mathf.Clamp(PrimaryEnergy + energy, 0, _maxEnergy);        
         
-        public void AddAmmo(int ammo) => _secondaryAmmo = Mathf.Clamp(_secondaryAmmo + ammo, 0, _maxAmmo);
+        public void AddAmmo(int ammo) => SecondaryAmmo = Mathf.Clamp(SecondaryAmmo + ammo, 0, _maxAmmo);
 
         private void InitOffensive()
         {
             PrimaryEnergy = _maxEnergy;
-            _secondaryAmmo = _maxAmmo;
+            SecondaryAmmo = _maxAmmo;
         }
 
         private void UpdateEnergyRegen()
@@ -155,9 +173,9 @@ namespace SpaceShooter
             if (count == 0)
                 return true;
 
-            if (_secondaryAmmo >= count)
+            if (SecondaryAmmo >= count)
             {
-                _secondaryAmmo -= count;
+                SecondaryAmmo -= count;
                 return true;
             }                
 

@@ -22,9 +22,7 @@ namespace SpaceShooter
             if (hit)
             {
                 if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest != _parent)
-                {
-                    dest.ApplyDamage(_damage);
-                }
+                    dest.ApplyDamage(_damage);                
 
                 OnProjectileLifeEnd(hit.collider, hit.point);
             }
@@ -37,10 +35,7 @@ namespace SpaceShooter
             transform.position += new Vector3(step.x, step.y, 0);
         }
 
-        private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
-        {
-            Destroy(gameObject);
-        }
+        private void OnProjectileLifeEnd(Collider2D col, Vector2 pos) => Destroy(gameObject);
 
         public void SetParrentShooter(Destructible parent) => _parent = parent;
 
