@@ -4,13 +4,13 @@ namespace SpaceShooter
 {
     public class Projectile : Entity
     {
-        [SerializeField] private float _velocity;
-        [SerializeField] private float _lifeTime;
-        [SerializeField] private int _damage;
+        [SerializeField] internal float _velocity;
+        [SerializeField] internal float _lifeTime;
+        [SerializeField] internal int _damage;
         [SerializeField] private ImpactEffect _impactEffectPrefab;
 
-        private float _timer;
-        private Destructible _parent;
+        internal float _timer;
+        internal Destructible _parent;
 
         private void Update()
         {
@@ -35,7 +35,7 @@ namespace SpaceShooter
             transform.position += new Vector3(step.x, step.y, 0);
         }
 
-        private void OnProjectileLifeEnd(Collider2D col, Vector2 pos) => Destroy(gameObject);
+        internal void OnProjectileLifeEnd(Collider2D col, Vector2 pos) => Destroy(gameObject);
 
         public void SetParrentShooter(Destructible parent) => _parent = parent;
 
