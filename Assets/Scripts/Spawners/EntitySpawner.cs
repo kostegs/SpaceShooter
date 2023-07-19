@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class EntitySpawner : MonoBehaviour
+    public abstract class EntitySpawner : MonoBehaviour
     {
         public enum SpawnMode
         {
@@ -10,13 +10,12 @@ namespace SpaceShooter
             Loop
         }
 
-        [SerializeField] private Entity[] _entityPrefabs;
-        [SerializeField] private CircleArea _circleArea;
-        [SerializeField] private SpawnMode _spawnMode;
-        [SerializeField] private int _numSpawns;
-        [SerializeField] private float _respawnTime;
+        [SerializeField] internal CircleArea _circleArea;
+        [SerializeField] internal SpawnMode _spawnMode;
+        [SerializeField] internal int _numSpawns;
+        [SerializeField] internal float _respawnTime;
 
-        private float _timer;
+        internal float _timer;
 
         private void Start()
         {
@@ -38,15 +37,7 @@ namespace SpaceShooter
             }
         }
 
-        private void SpawnEntities()
-        {
-            for (int i = 0; i < _numSpawns; i++)
-            {
-                int index = Random.Range(0, _entityPrefabs.Length);
-
-                GameObject entity = Instantiate(_entityPrefabs[index]).gameObject;
-                entity.transform.position = _circleArea.GetRandomInsideZone();
-            }
-        }
+        internal abstract void SpawnEntities();
+        
     }
 }

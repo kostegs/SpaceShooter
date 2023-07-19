@@ -1384,7 +1384,9 @@ MonoBehaviour:
   - {fileID: 1553619488}
   - {fileID: 1393266902}
   _maxEnergy: 20
-  _maxAmmo: 10
+  _maxAmmo: 30
+  _defaultEnergy: 20
+  _defaultAmmo: 10
   _energyRegenPerSecond: 1
 --- !u!96 &16476547
 TrailRenderer:

@@ -44,6 +44,13 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] private int _maxEnergy; 
         [SerializeField] private int _maxAmmo;
+
+        /// <summary>
+        /// Default values
+        [SerializeField] private int _defaultEnergy;
+        [SerializeField] private int _defaultAmmo;
+        /// </summary>
+
         /// <summary>
         /// Regeneration of energy
         /// </summary>
@@ -158,8 +165,8 @@ namespace SpaceShooter
 
         private void InitOffensive()
         {
-            PrimaryEnergy = _maxEnergy;
-            SecondaryAmmo = _maxAmmo;
+            PrimaryEnergy = _defaultEnergy;
+            SecondaryAmmo = _defaultAmmo;
         }
 
         private void UpdateEnergyRegen()
