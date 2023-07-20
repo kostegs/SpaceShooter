@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 7282923617205343953}
   - component: {fileID: 98149020}
   - component: {fileID: 6310045700936855440}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VisualModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

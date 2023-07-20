@@ -31,9 +31,13 @@ namespace SpaceShooter
 
             if (hit)
             {
-                if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest != _parent)
+                if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest.GetComponent<SpaceShip>() != _parent)
                 {
                     dest.ApplyDamage(_damage);
+                    OnProjectileLifeEnd();
+                }
+                else if (hit.collider.transform.root.TryGetComponent<Destructive>(out Destructive destructive) && destructive.GetComponent<SpaceShip>() != _parent)
+                {
                     OnProjectileLifeEnd();
                 }
             }           

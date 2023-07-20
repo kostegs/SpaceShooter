@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 206464742}
   - component: {fileID: 206464743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 364133194}
   - component: {fileID: 364133196}
   - component: {fileID: 364133195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DistanceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 521886090}
   - component: {fileID: 521886092}
   - component: {fileID: 521886091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AmmoIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 911114665}
   - component: {fileID: 911114667}
   - component: {fileID: 911114666}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Health_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 960828306}
   - component: {fileID: 960828308}
   - component: {fileID: 960828307}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArrowImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1318634761}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Characteristics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393266901}
   - component: {fileID: 1393266902}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SecondaryTurret_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1548517425}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1553619487}
   - component: {fileID: 1553619488}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PrimaryTurret_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1600841880}
   - component: {fileID: 1600841879}
   - component: {fileID: 1600841878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,7 +752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1620758390}
   - component: {fileID: 1620758391}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PrimaryTurret_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +799,7 @@ GameObject:
   - component: {fileID: 1658257444}
   - component: {fileID: 1658257446}
   - component: {fileID: 1658257445}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ammo_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 1666666198}
   - component: {fileID: 1666666200}
   - component: {fileID: 1666666199}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1903805287}
   - component: {fileID: 1903805288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1063,7 +1063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1935004194}
   - component: {fileID: 1935004195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 683761277029509493}
   - component: {fileID: 5317560059591341708}
   - component: {fileID: 4001674891197305049}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Energy_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1250,7 +1250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5141854570229658657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1289,7 +1289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2053273317536144270}
   - component: {fileID: 748443937}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1342,7 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3123258831753280009}
   - component: {fileID: 6826723700056158757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield_Only (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1426,7 +1426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4004929375823031860}
   - component: {fileID: 2094752505238206589}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield_Only
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1511,7 +1511,7 @@ GameObject:
   - component: {fileID: 6269764342999601497}
   - component: {fileID: 4472928252429810568}
   - component: {fileID: 5028382452601264843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield_Timer_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1648,7 +1648,7 @@ GameObject:
   - component: {fileID: 5723488092030762792}
   - component: {fileID: 6605991806300029472}
   - component: {fileID: 1998070352246111366}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1787,7 +1787,7 @@ GameObject:
   - component: {fileID: 2932375725723551480}
   - component: {fileID: 4189170667564814666}
   - component: {fileID: 6174662606727778280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpaceShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2027,7 +2027,7 @@ GameObject:
   - component: {fileID: 2932375726205917485}
   - component: {fileID: 2932375726205917484}
   - component: {fileID: 2932375726205917487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VisualModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2129,7 +2129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6568261850515014671}
   - component: {fileID: 4141679081574686058}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield_Only (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2213,7 +2213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8668587654247719735}
   - component: {fileID: 2359295143952706202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield_Only (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2298,7 +2298,7 @@ GameObject:
   - component: {fileID: 825084766101109554}
   - component: {fileID: 5101639855678186971}
   - component: {fileID: 6350018667856686863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnergyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2373,7 +2373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3470215533873450550}
   - component: {fileID: 1964866846779856228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2600,7 +2600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5890173465731274240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shields
   m_TagString: Untagged
   m_Icon: {fileID: 0}

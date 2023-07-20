@@ -13115,7 +13115,7 @@ MonoBehaviour:
   _debrisPrefabs:
   - {fileID: 5326500969005092211, guid: d255f89d14d6bc04bbdb661dbe91d6d5, type: 3}
   _circleArea: {fileID: 1027122040}
-  _numberDebris: 20
+  _numberDebris: 50
   _randomSpeed: 1
 --- !u!1 &1030943800
 GameObject:
