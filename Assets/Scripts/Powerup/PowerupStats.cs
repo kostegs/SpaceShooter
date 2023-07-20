@@ -1,6 +1,3 @@
-using SpaceShooter;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -11,7 +8,8 @@ namespace SpaceShooter
         {
             AddAmmo,
             AddEnergy,
-            Invulnerability
+            Invulnerability,
+            IncreaseSpeed
         }
 
         [SerializeField] private EffectType _effectType;
@@ -29,6 +27,9 @@ namespace SpaceShooter
                     break;
                 case EffectType.Invulnerability:
                     ship.SetIndestructible((int)_value); 
+                    break;
+                case EffectType.IncreaseSpeed:
+                    ship.IncreaseSpeed(_value);
                     break;
                   
             }            

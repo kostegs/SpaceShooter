@@ -39,8 +39,9 @@ namespace SpaceShooter
         [Header("UI")]
         [SerializeField] private UIArrow _UIArrow;
         [SerializeField] private GameObject _UIShields;
-        [SerializeField] private GameObject _UIShieldPanel;
-        [SerializeField] private TextMeshProUGUI _shieldsTimer;
+        [SerializeField] private GameObject _UIInvulnerabilityPanel;
+        [SerializeField] private GameObject _UISpeedPanel;
+        [SerializeField] private GameObject _speedometerIcon;
 
         [Header("Fire")]
         [SerializeField] private Turret[] _turrets;
@@ -67,6 +68,10 @@ namespace SpaceShooter
         /// </summary>
         private float _primaryEnergy;
         private int _secondaryAmmo;
+
+        // Events
+        public event EventHandler<TimerEventArgs> TimerInvulnerabilityChanged;
+        public event EventHandler<TimerEventArgs> TimerSpeedChanged;
 
         private float PrimaryEnergy { get => _primaryEnergy;
             set
@@ -172,25 +177,48 @@ namespace SpaceShooter
 
         public void SetIndestructibleState(bool state)
         {
+            _UIInvulnerabilityPanel.SetActive(state);
             _UIShields.SetActive(state);
-            _UIShieldPanel.SetActive(state);
-            _indestructible = state;
+            _indestructible = state;         
         }
 
         IEnumerator ShipInvulnerability(int interval)
-        {
+        {            
             SetIndestructibleState(true);            
 
             int invTimer = interval;
 
             while (invTimer > 0)
             {
-                _shieldsTimer.text = invTimer.ToString();
+                TimerInvulnerabilityChanged?.Invoke(this, new TimerEventArgs(invTimer));
                 invTimer--;
                 yield return new WaitForSeconds(1);
             }
 
             SetIndestructibleState(false);            
+        }
+
+        public void IncreaseSpeed(float speed) => StartCoroutine(SpeedChanging(speed, 10));
+
+        IEnumerator SpeedChanging(float speedCoef, int timer)
+        {
+            _UISpeedPanel.SetActive(true);
+            _speedometerIcon.SetActive(true);
+            float savedThrust = _thrust;
+            int invTimer = timer;
+
+            _thrust += speedCoef;
+
+            while (invTimer > 0)
+            {
+                TimerSpeedChanged?.Invoke(this, new TimerEventArgs(invTimer));
+                invTimer--;
+                yield return new WaitForSeconds(1);
+            }
+            
+            _thrust = savedThrust;
+            _UISpeedPanel.SetActive(false);
+            _speedometerIcon.SetActive(false);
         }
 
         private void InitOffensive()
