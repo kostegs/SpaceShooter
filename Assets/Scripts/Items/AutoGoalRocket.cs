@@ -13,7 +13,7 @@ namespace SpaceShooter
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest != _parent)
+            if (collision.gameObject.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest.GetComponent<SpaceShip>() != _parent)
             {
                 _enemyPosition = collision.gameObject.transform.position;
                 GetComponent<Collider2D>().enabled = false;
@@ -45,7 +45,7 @@ namespace SpaceShooter
 
             while (true)
             {
-                MoveRocket();
+                MoveRocket();                
                 yield return null;
             }
         }
