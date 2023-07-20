@@ -12,30 +12,34 @@ namespace SpaceShooter
         internal float _timer;
         internal Destructible _parent;
 
+        private void Start() => Invoke("OnProjectileLifeEnd", _lifeTime);
+
         private void Update()
         {
+            MakeDamageToDestructibleObject();
+
             float stepLength = Time.deltaTime * _velocity;
             Vector2 step = transform.up * stepLength;
+            
+            transform.position += new Vector3(step.x, step.y, 0);
+        }
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, stepLength);
+        internal void MakeDamageToDestructibleObject()
+        {           
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, Time.deltaTime * _velocity);
 
             if (hit)
             {
                 if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest != _parent)
-                    dest.ApplyDamage(_damage);                
-
-                OnProjectileLifeEnd(hit.collider, hit.point);
-            }
-            
-            _timer += Time.deltaTime;
-
-            if (_timer > _lifeTime)
-                Destroy(gameObject);
-
-            transform.position += new Vector3(step.x, step.y, 0);
+                {
+                    dest.ApplyDamage(_damage);
+                    OnProjectileLifeEnd();
+                }
+            }           
         }
 
-        internal void OnProjectileLifeEnd(Collider2D col, Vector2 pos) => Destroy(gameObject);
+        protected void OnProjectileLifeEnd() => Destroy(gameObject);
 
         public void SetParrentShooter(Destructible parent) => _parent = parent;
 

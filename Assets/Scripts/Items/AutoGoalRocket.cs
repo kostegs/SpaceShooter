@@ -9,21 +9,7 @@ namespace SpaceShooter
 
         private void Start() => StartCoroutine(AutoGoal());            
 
-        void Update()
-        {
-            float stepLength = Time.deltaTime * _velocity;
-            Vector2 step = transform.up * stepLength;
-             
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, stepLength);            
-
-            if (hit)
-            {
-                if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest != _parent)
-                    dest.ApplyDamage(_damage);
-
-                OnProjectileLifeEnd(hit.collider, hit.point);
-            }           
-        }
+        void Update() => MakeDamageToDestructibleObject(); 
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -36,6 +22,7 @@ namespace SpaceShooter
 
         IEnumerator AutoGoal()
         {
+            Invoke("OnProjectileLifeEnd", _lifeTime);
             yield return StartCoroutine(Moving());
             yield return StartCoroutine(MovingToGoal());
 
@@ -63,16 +50,7 @@ namespace SpaceShooter
             }
         }
 
-        private void MoveRocket()
-        {
-            float stepLength = Time.deltaTime * _velocity;
-            transform.position += (transform.up * stepLength);
-
-            _timer += Time.deltaTime;
-
-            if (_timer > _lifeTime)
-                Destroy(gameObject);
-        }
+        private void MoveRocket() => transform.position += (transform.up * Time.deltaTime * _velocity);            
 
         IEnumerator Rotation()
         {
