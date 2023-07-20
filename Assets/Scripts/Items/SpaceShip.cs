@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -36,13 +38,16 @@ namespace SpaceShooter
 
         [Header("UI")]
         [SerializeField] private UIArrow _UIArrow;
+        [SerializeField] private GameObject _UIShields;
+        [SerializeField] private GameObject _UIShieldPanel;
+        [SerializeField] private TextMeshProUGUI _shieldsTimer;
 
         [Header("Fire")]
         [SerializeField] private Turret[] _turrets;
         /// <summary>
         /// Maximum energy and ammos
         /// </summary>
-        [SerializeField] private int _maxEnergy; 
+        [SerializeField] private int _maxEnergy;
         [SerializeField] private int _maxAmmo;
 
         /// <summary>
@@ -63,21 +68,21 @@ namespace SpaceShooter
         private float _primaryEnergy;
         private int _secondaryAmmo;
 
-        private float PrimaryEnergy { get => _primaryEnergy; 
-                                      set 
-                                      {
-                                        _primaryEnergy = value;
-                                        OnEnergyChanged?.Invoke(this, EventArgs.Empty);
-                                      }
-                                    }
+        private float PrimaryEnergy { get => _primaryEnergy;
+            set
+            {
+                _primaryEnergy = value;
+                OnEnergyChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         private int SecondaryAmmo { get => _secondaryAmmo;
-                                      set 
-                                      {
-                                        _secondaryAmmo = value;
-                                        OnAmmoChanged?.Invoke(this, EventArgs.Empty);  
-                                      }             
-                                    }
+            set
+            {
+                _secondaryAmmo = value;
+                OnAmmoChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         #region Public API
 
@@ -122,15 +127,15 @@ namespace SpaceShooter
             _rigid = GetComponent<Rigidbody2D>();
             _rigid.mass = _mass;
             _rigid.inertia = 1;
-            
+
             InitOffensive();
-        }        
+        }
 
         private void FixedUpdate()
         {
             UpdateRigidbody();
             UpdateEnergyRegen();
-        } 
+        }
 
         #endregion
 
@@ -159,9 +164,34 @@ namespace SpaceShooter
 
         public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
 
-        public void AddEnergy(int energy) => PrimaryEnergy = Mathf.Clamp(PrimaryEnergy + energy, 0, _maxEnergy);        
-        
+        public void AddEnergy(int energy) => PrimaryEnergy = Mathf.Clamp(PrimaryEnergy + energy, 0, _maxEnergy);
+
         public void AddAmmo(int ammo) => SecondaryAmmo = Mathf.Clamp(SecondaryAmmo + ammo, 0, _maxAmmo);
+
+        public void SetIndestructible(int interval) => StartCoroutine(ShipInvulnerability(interval));
+
+        public void SetIndestructibleState(bool state)
+        {
+            _UIShields.SetActive(state);
+            _UIShieldPanel.SetActive(state);
+            _indestructible = state;
+        }
+
+        IEnumerator ShipInvulnerability(int interval)
+        {
+            SetIndestructibleState(true);            
+
+            int invTimer = interval;
+
+            while (invTimer > 0)
+            {
+                _shieldsTimer.text = invTimer.ToString();
+                invTimer--;
+                yield return new WaitForSeconds(1);
+            }
+
+            SetIndestructibleState(false);            
+        }
 
         private void InitOffensive()
         {

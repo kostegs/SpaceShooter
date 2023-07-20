@@ -10,7 +10,7 @@ namespace SpaceShooter
     {
         #region Properties
 
-        [SerializeField] private bool _indestructible;
+        [SerializeField] internal bool _indestructible;
         [SerializeField] private int _hitPoints;
         [SerializeField] private ParticleSystem _destroyEffect;
         [SerializeField] internal SpriteRenderer _spriteRenderer;

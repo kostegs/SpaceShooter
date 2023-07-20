@@ -10,7 +10,8 @@ namespace SpaceShooter
         public enum EffectType
         {
             AddAmmo,
-            AddEnergy
+            AddEnergy,
+            Invulnerability
         }
 
         [SerializeField] private EffectType _effectType;
@@ -26,6 +27,10 @@ namespace SpaceShooter
                 case EffectType.AddEnergy:
                     ship.AddEnergy((int)_value);
                     break;
+                case EffectType.Invulnerability:
+                    ship.SetIndestructible((int)_value); 
+                    break;
+                  
             }            
         }
     }
