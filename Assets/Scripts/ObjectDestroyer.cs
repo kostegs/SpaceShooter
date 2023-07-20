@@ -24,7 +24,10 @@ namespace SpaceShooter
 
         public void DestroyGameObject(GameObject gameObject, float interval, ParticleSystem particleSystem, SpriteRenderer spriteRenderer, Action action)
            => StartCoroutine(DestroyGameObjectCoroutine(gameObject, interval, particleSystem, spriteRenderer, action));
-        
+
+        public void DestroyGameObject(GameObject gameObject, float interval, SpriteRenderer spriteRenderer, Action action)
+           => StartCoroutine(DestroyGameObjectCoroutine(gameObject, interval, null, spriteRenderer, action));
+
 
         IEnumerator DestroyGameObjectCoroutine(GameObject gameObject, float interval, ParticleSystem particleSystemPrefab, SpriteRenderer spriteRenderer, Action action)
         {

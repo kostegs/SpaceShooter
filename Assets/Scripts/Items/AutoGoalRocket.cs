@@ -5,6 +5,7 @@ namespace SpaceShooter
 {
     public class AutoGoalRocket : Projectile
     {
+        [SerializeField] private ParticleSystem _damageEffect;
         private Vector3 _enemyPosition;
 
         private void Start() => StartCoroutine(AutoGoal());            
@@ -70,6 +71,9 @@ namespace SpaceShooter
 
             transform.eulerAngles = new Vector3(0, 0, targetAngle);
         }
+
+        protected override void OnProjectileLifeEnd() 
+            => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, _damageEffect, GetComponent<SpriteRenderer>(), null);
 
 
     }

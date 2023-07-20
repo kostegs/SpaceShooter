@@ -7,8 +7,7 @@ namespace SpaceShooter
         [SerializeField] internal float _velocity;
         [SerializeField] internal float _lifeTime;
         [SerializeField] internal int _damage;
-        [SerializeField] private ImpactEffect _impactEffectPrefab;
-
+        
         internal float _timer;
         internal Destructible _parent;
 
@@ -43,7 +42,7 @@ namespace SpaceShooter
             }           
         }
 
-        protected void OnProjectileLifeEnd() => Destroy(gameObject);
+        protected virtual void OnProjectileLifeEnd() => Destroy(gameObject);
 
         public void SetParrentShooter(Destructible parent) => _parent = parent;
 
