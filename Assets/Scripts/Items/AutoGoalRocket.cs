@@ -5,20 +5,23 @@ namespace SpaceShooter
 {
     public class AutoGoalRocket : Projectile
     {
-        [SerializeField] private ParticleSystem _damageEffect;
+        [SerializeField] private ParticleSystem _damageEffect;        
+        [SerializeField] private CircleArea _explosionArea;
+
         private Vector3 _enemyPosition;
+        
 
         private void Start() => StartCoroutine(AutoGoal());            
 
-        void Update() => MakeDamageToDestructibleObject(); 
+        void Update() => MakeDamageToDestructibleObject();
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest.GetComponent<SpaceShip>() != _parent)
             {
                 _enemyPosition = collision.gameObject.transform.position;
-                GetComponent<Collider2D>().enabled = false;
-            }
+                GetComponent<Collider2D>().enabled = false;                
+            }            
         }
 
         IEnumerator AutoGoal()
@@ -72,9 +75,19 @@ namespace SpaceShooter
             transform.eulerAngles = new Vector3(0, 0, targetAngle);
         }
 
-        protected override void OnProjectileLifeEnd() 
-            => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, _damageEffect, GetComponent<SpriteRenderer>(), null);
+        protected override void OnProjectileLifeEnd()
+        {
+            Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, _explosionArea.Radius);            
+            
+            foreach (Collider2D hit in hitObjects)            
+            {
+                if (hit.transform.root.TryGetComponent<Destructible>(out Destructible dest) && dest.GetComponent<SpaceShip>() != _parent)                
+                    dest.ApplyDamage(_damage);                                
+            } 
+                        
 
+            ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, _damageEffect, GetComponent<SpriteRenderer>(), null);
+        }   
 
     }
 }
