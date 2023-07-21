@@ -202,7 +202,9 @@ MonoBehaviour:
   _indestructible: 0
   _hitPoints: 3000
   _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 198944468247688803}
+  _size: 0
+  _asteroidPartPrefab: {fileID: 7967720979008407245, guid: ed4469d4207f16c4cb115a4a29d391ae, type: 3}
 --- !u!114 &8025230660686475468
 MonoBehaviour:
   m_ObjectHideFlags: 0

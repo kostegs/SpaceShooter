@@ -32,10 +32,8 @@ namespace SpaceShooter
 
             Rigidbody2D rb = debris.GetComponent <Rigidbody2D>();
 
-            if (rb != null && _randomSpeed > 0)
-            {
-                rb.velocity = (Vector2)UnityEngine.Random.insideUnitSphere * _randomSpeed;
-            }
+            if (rb != null && _randomSpeed > 0)            
+                rb.velocity = (Vector2)UnityEngine.Random.insideUnitSphere * _randomSpeed;            
         }
 
         private void OnDebrisDead(object Object, EventArgs e) => SpawnDebris();
