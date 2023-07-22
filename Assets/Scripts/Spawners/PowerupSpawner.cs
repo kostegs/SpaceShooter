@@ -1,5 +1,6 @@
 using SpaceShooter;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 namespace SpaceShooter
 {
@@ -9,11 +10,14 @@ namespace SpaceShooter
 
         internal override void SpawnEntities()
         {
+            int index = 0;
+
             for (int i = 0; i < _numSpawns; i++)
             {
-                int index = Random.Range(0, _powerUpPrefabs.Length);
+                if (index == _powerUpPrefabs.Length)
+                    index = 0;
 
-                GameObject entity = Instantiate(_powerUpPrefabs[index]).gameObject;
+                GameObject entity = Instantiate(_powerUpPrefabs[index++]).gameObject;
                 entity.transform.position = _circleArea.GetRandomInsideZone();
             }
         }

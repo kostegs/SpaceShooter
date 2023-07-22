@@ -69,6 +69,12 @@ namespace SpaceShooter
         private float _primaryEnergy;
         private int _secondaryAmmo;
 
+        /// <summary>
+        /// Coroutines
+        /// </summary>
+        private IEnumerator _invulnerabilityCoroutine;
+        private IEnumerator _speedChangingCoroutine;
+
         // Events
         public event EventHandler<TimerEventArgs> TimerInvulnerabilityChanged;
         public event EventHandler<TimerEventArgs> TimerSpeedChanged;
@@ -173,7 +179,20 @@ namespace SpaceShooter
 
         public void AddAmmo(int ammo) => SecondaryAmmo = Mathf.Clamp(SecondaryAmmo + ammo, 0, _maxAmmo);
 
-        public void SetIndestructible(int interval) => StartCoroutine(ShipInvulnerability(interval));
+        public void SetIndestructible(int interval)
+        {
+            if (_invulnerabilityCoroutine == null)
+            {
+                _invulnerabilityCoroutine = ShipInvulnerability(interval);
+                StartCoroutine(_invulnerabilityCoroutine);
+            }
+            else
+            {
+                StopCoroutine(_invulnerabilityCoroutine);
+                _invulnerabilityCoroutine = ShipInvulnerability(interval);
+                StartCoroutine(_invulnerabilityCoroutine);
+            }            
+        }
 
         public void SetIndestructibleState(bool state)
         {
@@ -184,7 +203,9 @@ namespace SpaceShooter
 
         IEnumerator ShipInvulnerability(int interval)
         {            
-            SetIndestructibleState(true);            
+            SetIndestructibleState(true);
+            yield return new WaitForSeconds(0.3f);
+            TimerInvulnerabilityChanged?.Invoke(this, new TimerEventArgs(interval));
 
             int invTimer = interval;
 
@@ -198,7 +219,20 @@ namespace SpaceShooter
             SetIndestructibleState(false);            
         }
 
-        public void IncreaseSpeed(float speed) => StartCoroutine(SpeedChanging(speed, 10));
+        public void IncreaseSpeed(float speed)
+        {
+            if (_speedChangingCoroutine == null)
+            {
+                _speedChangingCoroutine = SpeedChanging(speed, 10);
+                StartCoroutine(_speedChangingCoroutine);
+            }
+            else
+            {
+                StopCoroutine(_speedChangingCoroutine);
+                _speedChangingCoroutine = SpeedChanging(speed, 10);
+                StartCoroutine(_speedChangingCoroutine);
+            }            
+        } 
 
         IEnumerator SpeedChanging(float speedCoef, int timer)
         {
