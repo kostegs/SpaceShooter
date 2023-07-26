@@ -95,11 +95,17 @@ namespace SpaceShooter
             {
                 _movePosition = _selectedTarget.transform.position;
                 return;
-            }              
+            }
 
-           // Debug.Log(_randomizeDirectionTimer.CurrentTime);
-            
-            bool isInsidePatrolZone = (_patrolPoint.transform.position - transform.position).sqrMagnitude < _patrolPoint.Radius * _patrolPoint.Radius;
+            if (_randomizeDirectionTimer.IsFinished == true)
+            {
+                _movePosition = UnityEngine.Random.onUnitSphere * _patrolPoint.Radius + _patrolPoint.transform.position;
+                _randomizeDirectionTimer.Start(_randomSelectMovePointType);
+            }
+
+            // TODO - think about applicability
+
+            /*bool isInsidePatrolZone = (_patrolPoint.transform.position - transform.position).sqrMagnitude < _patrolPoint.Radius * _patrolPoint.Radius;
 
             if (isInsidePatrolZone)
             {
@@ -110,7 +116,7 @@ namespace SpaceShooter
                 }
             }
             else
-                _movePosition = _patrolPoint.transform.position;                                                
+                _movePosition = _patrolPoint.transform.position; */
         }
 
         private void SetPatrolBehaviour(AIPointPatrol pointPatrol)
@@ -126,7 +132,7 @@ namespace SpaceShooter
             InitTimer(ref _randomizeDirectionTimer, _randomSelectMovePointType);            
         }
 
-        private void InitTimer(ref Timer timer, float interval) => timer = new Timer(interval);
+        private void InitTimer(ref Timer timer, float interval) => timer = new Timer();
 
         private void UpdateTimers()
         {

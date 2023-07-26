@@ -13709,6 +13709,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1360014606}
     - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _navigationLinear
+      value: 0.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _navigationAngular
+      value: 0.854
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: _randomSelectMovePointType
       value: 5
       objectReference: {fileID: 0}
@@ -18179,7 +18187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbcc27696ced8c4e992c26471352c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 5.47
+  _radius: 10.86
 --- !u!4 &1360014607
 Transform:
   m_ObjectHideFlags: 0

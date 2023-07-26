@@ -9,8 +9,6 @@ namespace SpaceShooter
 
         public bool IsFinished => _currentTime <= 0;
 
-        public Timer(float startTime) => Start(startTime);
-        
         public void Start(float startTime) => _currentTime = startTime;
 
         public void SubstractTime(float deltaTime)
