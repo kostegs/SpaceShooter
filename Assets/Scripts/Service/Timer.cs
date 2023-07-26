@@ -1,8 +1,11 @@
+using System.Diagnostics;
+
 namespace SpaceShooter
 {
     public class Timer
     {
         private float _currentTime;
+        public float CurrentTime => _currentTime;
 
         public bool IsFinished => _currentTime <= 0;
 

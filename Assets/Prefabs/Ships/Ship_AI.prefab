@@ -755,6 +755,7 @@ GameObject:
   - component: {fileID: 5450679954722617104}
   - component: {fileID: 6428813853575979170}
   - component: {fileID: 3937727483491384832}
+  - component: {fileID: 4056943057124326571}
   m_Layer: 6
   m_Name: Ship_AI
   m_TagString: Untagged
@@ -985,6 +986,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destructiveProperties: {fileID: 11400000, guid: 73b657e5f992b8f48a62f52f317b1fb1, type: 2}
+--- !u!114 &4056943057124326571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450679954037527833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58180aa5a972b7f4ba1064327df13d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _behaviour: 1
+  _navigationLinear: 0
+  _navigationAngular: 0
+  _randomSelectMovePointType: 0
+  _findNewTargetTime: 0
+  _shootDelay: 0
+  _evadeRayLength: 0
 --- !u!1 &5450679955272050890
 GameObject:
   m_ObjectHideFlags: 0
