@@ -19,7 +19,7 @@ namespace SpaceShooter
         /// <summary>
         /// Pushing forward force 
         /// </summary>
-        [SerializeField] private float _thrust;
+        [SerializeField] protected float _thrust;
 
         /// <summary>
         /// Rotation force 
@@ -36,65 +36,33 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] private float _maxAngularVelocity;
 
-        [Header("UI")]
-        [SerializeField] private UIArrow _UIArrow;
-        [SerializeField] private GameObject _UIShields;
-        [SerializeField] private GameObject _UIInvulnerabilityPanel;
-        [SerializeField] private GameObject _UISpeedPanel;
-        [SerializeField] private GameObject _speedometerIcon;
-
         [Header("Fire")]
         [SerializeField] private Turret[] _turrets;
         /// <summary>
         /// Maximum energy and ammos
         /// </summary>
-        [SerializeField] private int _maxEnergy;
-        [SerializeField] private int _maxAmmo;
+        [SerializeField] protected int _maxEnergy;
+        [SerializeField] protected int _maxAmmo;
 
         /// <summary>
         /// Default values
-        [SerializeField] private int _defaultEnergy;
-        [SerializeField] private int _defaultAmmo;
+        [SerializeField] protected int _defaultEnergy;
+        [SerializeField] protected int _defaultAmmo;
         /// </summary>
 
         /// <summary>
         /// Regeneration of energy
         /// </summary>
-        [SerializeField] private int _energyRegenPerSecond;
+        [SerializeField] protected int _energyRegenPerSecond;
 
         private Rigidbody2D _rigid;
         /// <summary>
         /// Current energy and ammos
         /// </summary>
-        private float _primaryEnergy;
-        private int _secondaryAmmo;
+        protected float _primaryEnergy;
+        protected int _secondaryAmmo;
 
-        /// <summary>
-        /// Coroutines
-        /// </summary>
-        private IEnumerator _invulnerabilityCoroutine;
-        private IEnumerator _speedChangingCoroutine;
-
-        // Events
-        public event EventHandler<TimerEventArgs> TimerInvulnerabilityChanged;
-        public event EventHandler<TimerEventArgs> TimerSpeedChanged;
-
-        private float PrimaryEnergy { get => _primaryEnergy;
-            set
-            {
-                _primaryEnergy = value;
-                OnEnergyChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        private int SecondaryAmmo { get => _secondaryAmmo;
-            set
-            {
-                _secondaryAmmo = value;
-                OnAmmoChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
+        
         #region Public API
 
         /// <summary>
@@ -117,15 +85,23 @@ namespace SpaceShooter
         /// </summary>  
         public int CurrentAmmo { get => _secondaryAmmo; }
 
-        /// <summary>
-        /// Energy's changed - event
-        /// </summary>
-        public event EventHandler<EventArgs> OnEnergyChanged;
+        public virtual float PrimaryEnergy
+        {
+            get => _primaryEnergy;
+            set
+            {
+                _primaryEnergy = value;                
+            }
+        }
 
-        /// <summary>
-        /// Ammo's changed - event
-        public event EventHandler<EventArgs> OnAmmoChanged;
-        /// </summary>
+        public virtual int SecondaryAmmo
+        {
+            get => _secondaryAmmo;
+            set
+            {
+                _secondaryAmmo = value;                
+            }
+        }
 
         #endregion
 
@@ -142,11 +118,7 @@ namespace SpaceShooter
             InitOffensive();
         }
 
-        private void FixedUpdate()
-        {
-            UpdateRigidbody();
-            UpdateEnergyRegen();
-        }
+        protected virtual void FixedUpdate() => UpdateRigidbody();            
 
         #endregion
 
@@ -171,101 +143,13 @@ namespace SpaceShooter
             }
         }
 
-        private protected override void OnDeath() => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, DestroyEffect, _spriteRenderer, base.OnDeath);
-
-        public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
-
-        public void AddEnergy(int energy) => PrimaryEnergy = Mathf.Clamp(PrimaryEnergy + energy, 0, _maxEnergy);
-
-        public void AddAmmo(int ammo) => SecondaryAmmo = Mathf.Clamp(SecondaryAmmo + ammo, 0, _maxAmmo);
-
-        public void SetIndestructible(int interval)
-        {
-            if (_invulnerabilityCoroutine == null)
-            {
-                _invulnerabilityCoroutine = ShipInvulnerability(interval);
-                StartCoroutine(_invulnerabilityCoroutine);
-            }
-            else
-            {
-                StopCoroutine(_invulnerabilityCoroutine);
-                _invulnerabilityCoroutine = ShipInvulnerability(interval);
-                StartCoroutine(_invulnerabilityCoroutine);
-            }            
-        }
-
-        public void SetIndestructibleState(bool state)
-        {
-            _UIInvulnerabilityPanel.SetActive(state);
-            _UIShields.SetActive(state);
-            _indestructible = state;         
-        }
-
-        IEnumerator ShipInvulnerability(int interval)
-        {            
-            SetIndestructibleState(true);
-            yield return new WaitForSeconds(0.3f);
-            TimerInvulnerabilityChanged?.Invoke(this, new TimerEventArgs(interval));
-
-            int invTimer = interval;
-
-            while (invTimer > 0)
-            {
-                TimerInvulnerabilityChanged?.Invoke(this, new TimerEventArgs(invTimer));
-                invTimer--;
-                yield return new WaitForSeconds(1);
-            }
-
-            SetIndestructibleState(false);            
-        }
-
-        public void IncreaseSpeed(float speed)
-        {
-            if (_speedChangingCoroutine == null)
-            {
-                _speedChangingCoroutine = SpeedChanging(speed, 10);
-                StartCoroutine(_speedChangingCoroutine);
-            }
-            else
-            {
-                StopCoroutine(_speedChangingCoroutine);
-                _speedChangingCoroutine = SpeedChanging(speed, 10);
-                StartCoroutine(_speedChangingCoroutine);
-            }            
-        } 
-
-        IEnumerator SpeedChanging(float speedCoef, int timer)
-        {
-            _UISpeedPanel.SetActive(true);
-            _speedometerIcon.SetActive(true);
-            float savedThrust = _thrust;
-            int invTimer = timer;
-
-            _thrust += speedCoef;
-
-            while (invTimer > 0)
-            {
-                TimerSpeedChanged?.Invoke(this, new TimerEventArgs(invTimer));
-                invTimer--;
-                yield return new WaitForSeconds(1);
-            }
-            
-            _thrust = savedThrust;
-            _UISpeedPanel.SetActive(false);
-            _speedometerIcon.SetActive(false);
-        }
-
         private void InitOffensive()
         {
             PrimaryEnergy = _defaultEnergy;
             SecondaryAmmo = _defaultAmmo;
         }
 
-        private void UpdateEnergyRegen()
-        {
-            PrimaryEnergy += (float)_energyRegenPerSecond * Time.fixedDeltaTime;
-            PrimaryEnergy = Mathf.Clamp(PrimaryEnergy, 0, _maxEnergy);
-        }
+        protected override void OnDeath() => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, DestroyEffect, _spriteRenderer, base.OnDeath);
 
         public bool DrawAmmo(int count)
         {
@@ -276,7 +160,7 @@ namespace SpaceShooter
             {
                 SecondaryAmmo -= count;
                 return true;
-            }                
+            }
 
             return false;
         }

@@ -5,7 +5,7 @@ namespace SpaceShooter
 {
     public class UISpaceShipSpeed : MonoBehaviour
     {
-        [SerializeField] private SpaceShip _ship;
+        [SerializeField] private PlayerSpaceShip _ship;
         [SerializeField] private TextMeshProUGUI _timerText;
 
         private void Start() => _ship.TimerSpeedChanged += OnTimerSpeedChanged;

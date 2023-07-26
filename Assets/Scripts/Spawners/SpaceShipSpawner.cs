@@ -6,13 +6,13 @@ namespace SpaceShooter
     {
         [SerializeField] private GameObject _spaceShipPrefab;
 
-        public SpaceShip SpawnSpaceShip(Vector3 coordinates, Quaternion rotation)
+        public PlayerSpaceShip SpawnPlayerSpaceShip(Vector3 coordinates, Quaternion rotation)
         {
             int RandomRotation = Random.Range(0, 180);
 
             var ship = Instantiate(_spaceShipPrefab, coordinates, rotation);
 
-            return ship.GetComponent<SpaceShip>();
+            return ship.GetComponent<PlayerSpaceShip>();
         }
     }
 }

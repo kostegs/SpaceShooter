@@ -14,7 +14,7 @@ namespace SpaceShooter
         [SerializeField] private AsteroidSize _size;
         [SerializeField] private Asteroid _asteroidPartPrefab;
 
-        private protected override void OnDeath()
+        protected override void OnDeath()
         {
             switch (_size)
             {

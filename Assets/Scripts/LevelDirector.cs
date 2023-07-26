@@ -29,7 +29,7 @@ namespace SpaceShooter
         [SerializeField] private Image _blackScreenImage;
 
         private Player _playerScript;
-        private SpaceShip _spaceShip;
+        private PlayerSpaceShip _spaceShip;
         private int _currentSpawnPoint = 0;
         
 
@@ -62,7 +62,7 @@ namespace SpaceShooter
                 newShipRotation = Quaternion.Euler(new Vector3(0, 0, RandomRotation));
             }
 
-            _spaceShip = _spawner.SpawnSpaceShip(newShipPosition, newShipRotation);
+            _spaceShip = _spawner.SpawnPlayerSpaceShip(newShipPosition, newShipRotation);
             _playerScript = _playerContainer.GetComponent<Player>();
 
             if (_spaceShip != null)

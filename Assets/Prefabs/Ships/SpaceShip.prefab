@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913af62399d1f2649b03330dfda7820a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ship: {fileID: 2932375725569844467}
+  _ship: {fileID: 134326842713158568}
   _ammoText: {fileID: 1658257445}
 --- !u!1 &364133193
 GameObject:
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a00d82de78876245b976a30dfac8984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ship: {fileID: 2932375725569844467}
+  _ship: {fileID: 134326842713158568}
   _healthText: {fileID: 911114666}
 --- !u!1 &167842911481609035
 GameObject:
@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08822634645abfe48b427d24b3487b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ship: {fileID: 2932375725569844467}
+  _ship: {fileID: 134326842713158568}
   _energyText: {fileID: 4001674891197305049}
 --- !u!1 &2056832411766210595
 GameObject:
@@ -1674,7 +1674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b3551e170e68a47b3b172b3aa19e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ship: {fileID: 2932375725569844467}
+  _ship: {fileID: 134326842713158568}
   _timerText: {fileID: 2154417509287258049}
 --- !u!1 &2932375725569844465
 GameObject:
@@ -1686,11 +1686,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2932375725569844464}
   - component: {fileID: 2932375725569844466}
-  - component: {fileID: 2932375725569844467}
   - component: {fileID: 16476547}
   - component: {fileID: 2932375725723551480}
   - component: {fileID: 4189170667564814666}
   - component: {fileID: 6174662606727778280}
+  - component: {fileID: 134326842713158568}
   m_Layer: 6
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -1739,42 +1739,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2932375725569844467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2932375725569844465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5015f28f430210649bcdebdb6aaf1425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nickName: 
-  _indestructible: 0
-  _hitPoints: 100
-  _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
-  _spriteRenderer: {fileID: 2932375726205917484}
-  _mass: 1
-  _thrust: 1000
-  _mobility: 2000
-  _maxLinearVelocity: 15
-  _maxAngularVelocity: 100
-  _UIArrow: {fileID: 1903805288}
-  _UIShields: {fileID: 8996334037712492660}
-  _UIInvulnerabilityPanel: {fileID: 2626458158483514514}
-  _UISpeedPanel: {fileID: 6713819927296309425}
-  _speedometerIcon: {fileID: 167842911481609035}
-  _turrets:
-  - {fileID: 1620758391}
-  - {fileID: 1553619488}
-  - {fileID: 1393266902}
-  _maxEnergy: 20
-  _maxAmmo: 30
-  _defaultEnergy: 20
-  _defaultAmmo: 10
-  _energyRegenPerSecond: 1
 --- !u!96 &16476547
 TrailRenderer:
   serializedVersion: 2
@@ -1921,6 +1885,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destructiveProperties: {fileID: 11400000, guid: 73b657e5f992b8f48a62f52f317b1fb1, type: 2}
+--- !u!114 &134326842713158568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932375725569844465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af392d3e73170541aa6e71b5a198bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nickName: 
+  _indestructible: 0
+  _hitPoints: 100
+  _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
+  _spriteRenderer: {fileID: 2932375726205917484}
+  _mass: 1
+  _thrust: 1000
+  _mobility: 2000
+  _maxLinearVelocity: 15
+  _maxAngularVelocity: 100
+  _turrets:
+  - {fileID: 1620758391}
+  - {fileID: 1553619488}
+  - {fileID: 1393266902}
+  _maxEnergy: 20
+  _maxAmmo: 30
+  _defaultEnergy: 20
+  _defaultAmmo: 10
+  _energyRegenPerSecond: 1
+  _UIArrow: {fileID: 1903805288}
+  _UIShields: {fileID: 8996334037712492660}
+  _UIInvulnerabilityPanel: {fileID: 2626458158483514514}
+  _UISpeedPanel: {fileID: 6713819927296309425}
+  _speedometerIcon: {fileID: 167842911481609035}
 --- !u!1 &2932375726205917474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,7 +2514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49b2414ac530e249b1158a4b1d70f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ship: {fileID: 2932375725569844467}
+  _ship: {fileID: 134326842713158568}
   _timerText: {fileID: 240458948718573779}
 --- !u!1 &6761342642568845123
 GameObject:

@@ -5,7 +5,7 @@ namespace SpaceShooter
 {
     public class UISpaceShipEnergy : MonoBehaviour
     {
-        [SerializeField] private SpaceShip _ship;
+        [SerializeField] private PlayerSpaceShip _ship;
         [SerializeField] private TextMeshProUGUI _energyText;
 
         private void Start()

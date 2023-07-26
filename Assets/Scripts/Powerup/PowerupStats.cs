@@ -15,7 +15,7 @@ namespace SpaceShooter
         [SerializeField] private EffectType _effectType;
         [SerializeField] private float _value;
 
-        protected override void OnPickedUp(SpaceShip ship)
+        protected override void OnPickedUp(PlayerSpaceShip ship)
         {
             switch (_effectType)
             {

@@ -5,7 +5,7 @@ namespace SpaceShooter
 {
     public class UISpaceShipAmmo : MonoBehaviour
     {
-        [SerializeField] private SpaceShip _ship;
+        [SerializeField] private PlayerSpaceShip _ship;
         [SerializeField] private TextMeshProUGUI _ammoText;
 
         private void Start()

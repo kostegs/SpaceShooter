@@ -9,7 +9,7 @@ namespace SpaceShooter
     {
         [SerializeField] private TurretProperties _properties;
 
-        protected override void OnPickedUp(SpaceShip ship) => ship.AssignWeapon(_properties);
+        protected override void OnPickedUp(PlayerSpaceShip ship) => ship.AssignWeapon(_properties);
     }
 }
 

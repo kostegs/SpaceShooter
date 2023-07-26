@@ -53,7 +53,7 @@ namespace SpaceShooter
 
         #endregion
 
-        private protected virtual void OnDeath() => OnDestruct?.Invoke(this, EventArgs.Empty);
+        protected virtual void OnDeath() => OnDestruct?.Invoke(this, EventArgs.Empty);
 
     }
 }
