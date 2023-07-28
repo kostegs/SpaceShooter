@@ -56,6 +56,7 @@ namespace SpaceShooter
             ActionControlShip();
             ActionFindNewAttackTarget();
             ActionFire();
+            ActionEvadeCollision();
         }
 
         private void ActionFire()
@@ -119,6 +120,14 @@ namespace SpaceShooter
                 _movePosition = _patrolPoint.transform.position; */
         }
 
+        private void ActionEvadeCollision()
+        {
+            if(Physics2D.Raycast(transform.position, transform.up, _evadeRayLength))
+            {
+                _movePosition = transform.position + transform.right * 50f;
+            }
+        }
+
         private void SetPatrolBehaviour(AIPointPatrol pointPatrol)
         {
             _behaviour = AIBehaviour.Patrol;
@@ -143,13 +152,17 @@ namespace SpaceShooter
 
         #endregion
 
-        private void OnDrawGizmosSelected()
+#if UNITY_EDITOR
+
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Vector3.zero, _movePosition);
             Debug.Log(_movePosition);
-        }
 
+            Debug.DrawRay(transform.position, transform.up * 10);                
+        }
+#endif
 
     }
 }
