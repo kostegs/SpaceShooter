@@ -122,10 +122,8 @@ namespace SpaceShooter
 
         private void ActionEvadeCollision()
         {
-            if(Physics2D.Raycast(transform.position, transform.up, _evadeRayLength))
-            {
-                _movePosition = transform.position + transform.right * 50f;
-            }
+            if(Physics2D.Raycast(transform.position, transform.up, _evadeRayLength))            
+                _movePosition = transform.position + transform.right * 50f;            
         }
 
         private void SetPatrolBehaviour(AIPointPatrol pointPatrol)
