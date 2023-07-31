@@ -47,12 +47,6 @@ namespace SpaceShooter
             }
         }
 
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-            UpdateEnergyRegen();            
-        }
-
         public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
 
         public void AddEnergy(int energy) => PrimaryEnergy = Mathf.Clamp(PrimaryEnergy + energy, 0, _maxEnergy);
@@ -134,13 +128,5 @@ namespace SpaceShooter
             _UISpeedPanel.SetActive(false);
             _speedometerIcon.SetActive(false);
         }
-
-        private void UpdateEnergyRegen()
-        {
-            PrimaryEnergy += (float)_energyRegenPerSecond * Time.fixedDeltaTime;
-            PrimaryEnergy = Mathf.Clamp(PrimaryEnergy, 0, _maxEnergy);
-        }
-
-        
     }
 }

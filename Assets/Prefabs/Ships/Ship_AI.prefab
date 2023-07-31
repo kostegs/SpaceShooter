@@ -482,12 +482,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _behaviour: 1
   _patrolPoint: {fileID: 0}
-  _navigationLinear: 0
-  _navigationAngular: 0
-  _randomSelectMovePointType: 0
-  _findNewTargetTime: 0
-  _shootDelay: 0
-  _evadeRayLength: 0
+  _navigationLinear: 0.205
+  _navigationAngular: 0.854
+  _randomSelectMovePointType: 5
+  _findNewTargetTime: 1
+  _shootDelay: 0.5
+  _evadeRayLength: 10
 --- !u!1 &5450679955272050890
 GameObject:
   m_ObjectHideFlags: 0

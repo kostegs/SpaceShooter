@@ -30,7 +30,10 @@ namespace SpaceShooter
         private Vector3 _movePosition;
         private Destructible _selectedTarget;        
         private const float MAX_ANGLE = 45.0F;
+        
         private Timer _randomizeDirectionTimer;
+        private Timer _fireTimer;
+        private Timer _findNewTargetTimer;
 
         private void Start()
         {
@@ -61,12 +64,45 @@ namespace SpaceShooter
 
         private void ActionFire()
         {
-            
+            if(_selectedTarget != null && _fireTimer.IsFinished == true)
+            {
+                _spaceShip.Fire(TurretMode.Primary);
+                _fireTimer.Restart();
+            }            
         }
 
         private void ActionFindNewAttackTarget()
         {
-            
+            if(_findNewTargetTimer.IsFinished == true)
+            {
+
+                _selectedTarget = FindNearestDestructibleTarget();
+                _findNewTargetTimer.Restart();
+            }            
+        }
+
+        private Destructible FindNearestDestructibleTarget()
+        {
+            float maxDist = float.MaxValue;
+
+            Destructible potentionalTarget = null;
+
+            foreach(var dest in Destructible.AllDestructibles)
+            {
+                if (dest.GetComponent<SpaceShip>() == _spaceShip)
+                    continue;
+
+                float dist = (dest.transform.position - _spaceShip.transform.position).sqrMagnitude;
+
+                if (dist < maxDist)
+                {
+                    maxDist = dist;
+                    potentionalTarget = dest;
+                }                    
+            }
+
+            return potentionalTarget;
+
         }
 
         private void ActionControlShip()
@@ -106,7 +142,7 @@ namespace SpaceShooter
 
             // TODO - think about applicability
 
-            /*bool isInsidePatrolZone = (_patrolPoint.transform.position - transform.position).sqrMagnitude < _patrolPoint.Radius * _patrolPoint.Radius;
+            /* bool isInsidePatrolZone = (_patrolPoint.transform.position - transform.position).sqrMagnitude < _patrolPoint.Radius * _patrolPoint.Radius;
 
             if (isInsidePatrolZone)
             {
@@ -136,14 +172,18 @@ namespace SpaceShooter
 
         private void InitTimers()
         {
-            InitTimer(ref _randomizeDirectionTimer, _randomSelectMovePointType);            
+            InitTimer(ref _randomizeDirectionTimer, _randomSelectMovePointType);
+            InitTimer(ref _fireTimer, _shootDelay);
+            InitTimer(ref _findNewTargetTimer, _findNewTargetTime);
         }
 
         private void InitTimer(ref Timer timer, float interval) => timer = new Timer();
 
         private void UpdateTimers()
         {
-            UpdateTimer(_randomizeDirectionTimer);            
+            UpdateTimer(_randomizeDirectionTimer);
+            UpdateTimer(_fireTimer);
+            UpdateTimer(_findNewTargetTimer);
         }
 
         private void UpdateTimer(Timer timer) => timer.SubstractTime(Time.deltaTime);

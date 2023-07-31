@@ -118,7 +118,11 @@ namespace SpaceShooter
             InitOffensive();
         }
 
-        protected virtual void FixedUpdate() => UpdateRigidbody();            
+        protected virtual void FixedUpdate()
+        {
+            UpdateRigidbody();
+            UpdateEnergyRegen();
+        } 
 
         #endregion
 
@@ -184,5 +188,12 @@ namespace SpaceShooter
             foreach (Turret turret in _turrets)
                 turret.AssignLoadOut(turretProperties);            
         }
+
+        private void UpdateEnergyRegen()
+        {
+            PrimaryEnergy += (float)_energyRegenPerSecond * Time.fixedDeltaTime;
+            PrimaryEnergy = Mathf.Clamp(PrimaryEnergy, 0, _maxEnergy);
+        }
+
     }
 }

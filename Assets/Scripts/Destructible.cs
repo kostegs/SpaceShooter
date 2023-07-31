@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -14,7 +15,11 @@ namespace SpaceShooter
         [SerializeField] private int _hitPoints;
         [SerializeField] private ParticleSystem _destroyEffect;
         [SerializeField] internal SpriteRenderer _spriteRenderer;
-        
+
+        private static HashSet<Destructible> _allDestructibles;
+
+        public static IReadOnlyCollection<Destructible> AllDestructibles => _allDestructibles;
+
         public ParticleSystem DestroyEffect 
         {
             get { return _destroyEffect; }
@@ -54,6 +59,16 @@ namespace SpaceShooter
         #endregion
 
         protected virtual void OnDeath() => OnDestruct?.Invoke(this, EventArgs.Empty);
+
+        protected virtual void OnEnable()
+        {
+            if (_allDestructibles == null)
+                _allDestructibles = new HashSet<Destructible>();
+            
+            _allDestructibles.Add(this);            
+        }
+
+        private void OnDestroy() => _allDestructibles.Remove(this);
 
     }
 }
