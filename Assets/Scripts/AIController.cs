@@ -75,7 +75,6 @@ namespace SpaceShooter
         {
             if(_findNewTargetTimer.IsFinished == true)
             {
-
                 _selectedTarget = FindNearestDestructibleTarget();
                 _findNewTargetTimer.Restart();
             }            
@@ -89,9 +88,13 @@ namespace SpaceShooter
 
             foreach(var dest in Destructible.AllDestructibles)
             {
-                if (dest.GetComponent<SpaceShip>() == _spaceShip)
-                    continue;
-
+                // Don't check the current object or common team.
+                if (dest.TryGetComponent<SpaceShip>(out SpaceShip destSpaceShip))
+                {
+                    if (destSpaceShip == _spaceShip || destSpaceShip.TeamID == _spaceShip.TeamID)
+                        continue;
+                }
+                
                 float dist = (dest.transform.position - _spaceShip.transform.position).sqrMagnitude;
 
                 if (dist < maxDist)

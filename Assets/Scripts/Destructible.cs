@@ -14,7 +14,8 @@ namespace SpaceShooter
         [SerializeField] internal bool _indestructible;
         [SerializeField] private int _hitPoints;
         [SerializeField] private ParticleSystem _destroyEffect;
-        [SerializeField] internal SpriteRenderer _spriteRenderer;
+        [SerializeField] protected SpriteRenderer _spriteRenderer;
+        [SerializeField] protected int _teamID;
 
         private static HashSet<Destructible> _allDestructibles;
 
@@ -30,6 +31,7 @@ namespace SpaceShooter
         public bool Indestructible => _indestructible;
         public int HitPoints => _hitPoints;
         public int CurrentHitPoints { get; private set; }
+        public int TeamID => _teamID;
 
         public event EventHandler<EventArgs> OnDestruct;
         public event EventHandler<EventArgs> OnHit;
