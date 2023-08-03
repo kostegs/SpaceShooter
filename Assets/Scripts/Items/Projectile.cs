@@ -11,6 +11,8 @@ namespace SpaceShooter
         internal float _timer;
         internal Destructible _parent;
 
+        public float Velocity => _velocity;
+
         private void Start() => Invoke("OnProjectileLifeEnd", _lifeTime);
 
         private void Update()

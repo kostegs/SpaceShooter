@@ -9,7 +9,7 @@ namespace SpaceShooter
         [SerializeField] private CircleArea _circleArea;
         [SerializeField] private int _numberDebris;        
         [SerializeField] private float _randomSpeed;
-        
+
         private void Start()
         {
             foreach (var debris in _debrisPrefabs)
@@ -33,7 +33,7 @@ namespace SpaceShooter
             Rigidbody2D rb = debris.GetComponent <Rigidbody2D>();
 
             if (rb != null && _randomSpeed > 0)            
-                rb.velocity = (Vector2)UnityEngine.Random.insideUnitSphere * _randomSpeed;            
+                rb.velocity = (Vector2)UnityEngine.Random.insideUnitSphere * _randomSpeed;
         }
 
         private void OnDebrisDead(object Object, EventArgs e) => SpawnDebris();

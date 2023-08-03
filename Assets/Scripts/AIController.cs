@@ -29,7 +29,7 @@ namespace SpaceShooter
         private SpaceShip _spaceShip;
         private Vector3 _movePosition;
         private Destructible _selectedTarget;        
-        private const float MAX_ANGLE = 45.0F;
+        private const float MAX_ANGLE = 90.0F;
         
         private Timer _randomizeDirectionTimer;
         private Timer _fireTimer;
@@ -90,11 +90,17 @@ namespace SpaceShooter
             foreach(var dest in Destructible.AllDestructibles)
             {
                 // Don't check the current object or common team.
-                if (dest.TryGetComponent<SpaceShip>(out SpaceShip destSpaceShip))
+                /*if (dest.TryGetComponent<SpaceShip>(out SpaceShip destSpaceShip))
                 {
                     if (destSpaceShip == _spaceShip || destSpaceShip.TeamID == _spaceShip.TeamID)
                         continue;
+                }*/
+
+                if (dest.TryGetComponent<PlayerSpaceShip>(out PlayerSpaceShip destSpaceShip))
+                {
+                    return dest;
                 }
+                    
                 
                 float dist = (dest.transform.position - _spaceShip.transform.position).sqrMagnitude;
 
@@ -117,11 +123,8 @@ namespace SpaceShooter
             {
                 var dest = (transform.position - _selectedTarget.transform.position).sqrMagnitude;
 
-                if (dest <= 10 * 10)
-                {
-                    speed = 0;
-                    Debug.Log($"position {transform.position}, target position {_selectedTarget.transform.position}, distance {dest}");
-                }
+                if (dest <= 10 * 10)                
+                    speed = 0;                
             }                    
 
             _spaceShip.ThrustControl = speed;
@@ -129,15 +132,44 @@ namespace SpaceShooter
 
         }
 
-        private static float ComputeAliginTorqueNormalize(Vector3 targetPosition, Transform ship)
+        private float ComputeAliginTorqueNormalize(Vector3 targetPosition, Transform ship)
         {
             Vector2 localTargetPosition = ship.InverseTransformPoint(targetPosition);
             float angle = Vector3.SignedAngle(localTargetPosition, Vector3.up, Vector3.forward);
 
             angle = Mathf.Clamp(angle, -MAX_ANGLE, MAX_ANGLE) / MAX_ANGLE;
 
+            if (_selectedTarget != null)
+                angle *= 10;
+
+            
 
             return -angle;
+        }
+
+        private Vector3 CalculateLeadPosition(Destructible selectedTarget)
+        {
+            Vector2 toTarget = transform.position - _selectedTarget.transform.position;
+            float xTime = toTarget.x / 10;
+            float yTime = toTarget.y / 10;
+
+            
+
+            float maxTime = Mathf.Max(Mathf.Abs(xTime), Mathf.Abs(yTime));
+
+            /*
+            Debug.Log($"Max time {maxTime}");
+
+            Debug.Log($"Velocity: {selectedTarget.GetComponent<Rigidbody2D>().velocity}");*/
+            Debug.Log($"selected target.position {selectedTarget.transform.position}");
+
+            Vector2 goalPosition = (Vector2)selectedTarget.transform.position + (selectedTarget.GetComponent<Rigidbody2D>().velocity * maxTime);
+
+            //Debug.Log($"goalPosition {goalPosition}");
+
+            Debug.DrawLine(Vector2.zero, goalPosition, Color.yellow);
+
+            return (Vector3)goalPosition;
         }
 
         private void ActionFindNewMovePosition()
@@ -147,7 +179,8 @@ namespace SpaceShooter
 
             if (_selectedTarget != null)
             {
-                _movePosition = _selectedTarget.transform.position;
+                //_movePosition = _selectedTarget.transform.position;
+                _movePosition = CalculateLeadPosition(_selectedTarget);
                 return;
             }
 
@@ -213,7 +246,7 @@ namespace SpaceShooter
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(Vector3.zero, _movePosition);
-            Debug.Log(_movePosition);
+            //Debug.Log(_movePosition);
 
             //Debug.DrawRay(transform.position, transform.up * 10);
 

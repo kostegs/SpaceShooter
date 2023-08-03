@@ -189,4 +189,3 @@ MonoBehaviour:
   _velocity: 10
   _lifeTime: 3
   _damage: 1000
-  _impactEffectPrefab: {fileID: 0}

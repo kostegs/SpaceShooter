@@ -310,7 +310,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5450679955272050884}
   _teamID: 1
   _mass: 1
-  _thrust: 1000
+  _thrust: 2000
   _mobility: 2000
   _maxLinearVelocity: 15
   _maxAngularVelocity: 100
@@ -318,7 +318,7 @@ MonoBehaviour:
   - {fileID: 7139701457937546911}
   - {fileID: 7139701457333529544}
   - {fileID: 7139701457106100542}
-  _maxEnergy: 20
+  _maxEnergy: 500
   _maxAmmo: 30
   _defaultEnergy: 20
   _defaultAmmo: 10

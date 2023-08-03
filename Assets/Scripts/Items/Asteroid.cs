@@ -13,7 +13,7 @@ namespace SpaceShooter
     {
         [SerializeField] private AsteroidSize _size;
         [SerializeField] private Asteroid _asteroidPartPrefab;
-
+                
         protected override void OnDeath()
         {
             switch (_size)
@@ -33,8 +33,7 @@ namespace SpaceShooter
                 case AsteroidSize.Small:
                     ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, DestroyEffect, _spriteRenderer, null);
                     break;
-            }
-                
-        } 
+            }                
+        }
     }
 }

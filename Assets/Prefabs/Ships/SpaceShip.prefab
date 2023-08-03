@@ -1902,7 +1902,7 @@ MonoBehaviour:
   _hitPoints: 100
   _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
   _spriteRenderer: {fileID: 2932375726205917484}
-  _teamID: 1
+  _teamID: 0
   _mass: 1
   _thrust: 1000
   _mobility: 2000

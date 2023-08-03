@@ -150,7 +150,7 @@ namespace SpaceShooter
         private void InitOffensive()
         {
             PrimaryEnergy = _defaultEnergy;
-            SecondaryAmmo = _defaultAmmo;
+            SecondaryAmmo = _defaultAmmo;            
         }
 
         protected override void OnDeath() => ObjectDestroyer.Instance.DestroyGameObject(gameObject, 1.5f, DestroyEffect, _spriteRenderer, base.OnDeath);

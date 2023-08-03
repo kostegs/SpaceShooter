@@ -13105,7 +13105,7 @@ MonoBehaviour:
   - {fileID: 5326500969005092211, guid: d255f89d14d6bc04bbdb661dbe91d6d5, type: 3}
   _circleArea: {fileID: 1027122040}
   _numberDebris: 50
-  _randomSpeed: 1
+  _randomSpeed: 3
 --- !u!1 &1030943800
 GameObject:
   m_ObjectHideFlags: 0
@@ -13660,17 +13660,25 @@ PrefabInstance:
       propertyPath: _patrolPoint
       value: 
       objectReference: {fileID: 1360014606}
+    - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _navigationLinear
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _navigationAngular
+      value: 0.94
+      objectReference: {fileID: 0}
     - target: {fileID: 5450679954037527832, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: m_RootOrder
       value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5450679954037527832, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.5
+      value: -45.68
       objectReference: {fileID: 0}
     - target: {fileID: 5450679954037527832, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -92.13
+      value: -85.93
       objectReference: {fileID: 0}
     - target: {fileID: 5450679954037527832, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13707,6 +13715,18 @@ PrefabInstance:
     - target: {fileID: 5450679954037527833, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: m_Name
       value: Ship_AI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450679954037527833, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450679954037527835, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _maxEnergy
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450679954037527835, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _defaultEnergy
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
