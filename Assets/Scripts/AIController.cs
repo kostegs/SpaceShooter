@@ -82,7 +82,8 @@ namespace SpaceShooter
 
         private Destructible FindNearestDestructibleTarget()
         {
-            float maxDist = float.MaxValue;
+            //float maxDist = float.MaxValue;
+            float maxDist = 10 * 10;
 
             Destructible potentionalTarget = null;
 
@@ -110,7 +111,20 @@ namespace SpaceShooter
 
         private void ActionControlShip()
         {
-            _spaceShip.ThrustControl = _navigationLinear;
+            var speed = _navigationLinear;
+
+            if (_selectedTarget != null)
+            {
+                var dest = (transform.position - _selectedTarget.transform.position).sqrMagnitude;
+
+                if (dest <= 10 * 10)
+                {
+                    speed = 0;
+                    Debug.Log($"position {transform.position}, target position {_selectedTarget.transform.position}, distance {dest}");
+                }
+            }                    
+
+            _spaceShip.ThrustControl = speed;
             _spaceShip.TorqueControl = ComputeAliginTorqueNormalize(_movePosition, _spaceShip.transform) * _navigationAngular;
 
         }
@@ -197,11 +211,15 @@ namespace SpaceShooter
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.green;
             Gizmos.DrawLine(Vector3.zero, _movePosition);
             Debug.Log(_movePosition);
 
-            Debug.DrawRay(transform.position, transform.up * 10);                
+            //Debug.DrawRay(transform.position, transform.up * 10);
+
+            if (_selectedTarget != null)
+                Debug.DrawLine(transform.position, _selectedTarget.transform.position, Color.red);                
+
         }
 #endif
 
