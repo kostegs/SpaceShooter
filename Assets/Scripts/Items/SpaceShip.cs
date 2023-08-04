@@ -153,8 +153,13 @@ namespace SpaceShooter
             {
                 if (turret.Mode == mode)
                 {
-                    if (turret.Fire(out Projectile projectile))                                        
-                        projectile.transform.up = dest;
+                    if (turret.Fire(out Projectile projectile))
+                    {
+                        float targetAngle = Vector2.SignedAngle(transform.up, dest);
+                        targetAngle += projectile.transform.eulerAngles.z;
+                        projectile.transform.eulerAngles = new Vector3(0, 0, targetAngle);
+                    }                                        
+                        
                 }
                     
             }

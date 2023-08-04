@@ -74,7 +74,8 @@ namespace SpaceShooter
 
                 if (dest <= _positionToFire * _positionToFire)
                 {
-                    Vector3 orientation = (_movePosition - transform.position).normalized;
+                    Vector3 orientation = (_movePosition - transform.position);
+                    //Debug.DrawLine(transform.position, transform.position + ((_movePosition - transform.position)), Color.blue); 
                     _spaceShip.Fire(TurretMode.Primary, orientation);
                     _fireTimer.Restart();
                 }                
@@ -106,11 +107,8 @@ namespace SpaceShooter
                         continue;
                 }*/
 
-                if (dest.TryGetComponent<PlayerSpaceShip>(out PlayerSpaceShip destSpaceShip))
-                {
-                    return dest;
-                }
-                    
+                if (dest.TryGetComponent<PlayerSpaceShip>(out PlayerSpaceShip destSpaceShip))                
+                    return dest;                    
                 
                 float dist = (dest.transform.position - _spaceShip.transform.position).sqrMagnitude;
 
@@ -122,7 +120,6 @@ namespace SpaceShooter
             }
 
             return potentionalTarget;
-
         }
 
         private void ActionControlShip()
@@ -160,8 +157,8 @@ namespace SpaceShooter
         private Vector3 CalculateLeadPosition(Destructible selectedTarget)
         {
             Vector2 toTarget = transform.position - _selectedTarget.transform.position;
-            float xTime = toTarget.x / 20;
-            float yTime = toTarget.y / 20;            
+            float xTime = toTarget.x / 10;
+            float yTime = toTarget.y / 10;            
 
             float maxTime = Mathf.Max(Mathf.Abs(xTime), Mathf.Abs(yTime));
 
