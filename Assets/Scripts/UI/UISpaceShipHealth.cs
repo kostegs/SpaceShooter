@@ -11,9 +11,23 @@ namespace SpaceShooter
         private void Start()
         {
             _ship.OnHit += OnSpaceShipHit;
-            _healthText.text = _ship.CurrentHitPoints.ToString();
+            ChangeHealthText();
         }
 
-        private void OnSpaceShipHit(object sender, System.EventArgs e) => _healthText.text = (_ship.CurrentHitPoints < 0 ? 0 : _ship.CurrentHitPoints).ToString();
+        private void OnSpaceShipHit(object sender, System.EventArgs e) => ChangeHealthText();                 
+
+        private void ChangeHealthText()
+        {
+            int GetHP()
+            {
+                if (_ship.CurrentHitPoints > 100)
+                    return _ship.CurrentHitPoints / 100;
+                else
+                    return (_ship.CurrentHitPoints < 0 ? 0 : _ship.CurrentHitPoints);
+            }
+
+            _healthText.text = GetHP().ToString();
+        }
+
     }
 }

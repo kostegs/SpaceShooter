@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nickName: 
   _indestructible: 0
-  _hitPoints: 100
+  _hitPoints: 10000
   _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
   _spriteRenderer: {fileID: 2932375726205917484}
   _teamID: 0

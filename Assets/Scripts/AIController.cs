@@ -151,17 +151,15 @@ namespace SpaceShooter
         {
             Vector2 toTarget = transform.position - _selectedTarget.transform.position;
             float xTime = toTarget.x / 10;
-            float yTime = toTarget.y / 10;
-
-            
+            float yTime = toTarget.y / 10;            
 
             float maxTime = Mathf.Max(Mathf.Abs(xTime), Mathf.Abs(yTime));
 
             /*
             Debug.Log($"Max time {maxTime}");
 
-            Debug.Log($"Velocity: {selectedTarget.GetComponent<Rigidbody2D>().velocity}");*/
-            Debug.Log($"selected target.position {selectedTarget.transform.position}");
+            Debug.Log($"Velocity: {selectedTarget.GetComponent<Rigidbody2D>().velocity}");
+            Debug.Log($"selected target.position {selectedTarget.transform.position}");*/
 
             Vector2 goalPosition = (Vector2)selectedTarget.transform.position + (selectedTarget.GetComponent<Rigidbody2D>().velocity * maxTime);
 
@@ -188,22 +186,7 @@ namespace SpaceShooter
             {
                 _movePosition = UnityEngine.Random.onUnitSphere * _patrolPoint.Radius + _patrolPoint.transform.position;
                 _randomizeDirectionTimer.Start(_randomSelectMovePointType);
-            }
-
-            // TODO - think about applicability
-
-            /* bool isInsidePatrolZone = (_patrolPoint.transform.position - transform.position).sqrMagnitude < _patrolPoint.Radius * _patrolPoint.Radius;
-
-            if (isInsidePatrolZone)
-            {
-                if (_randomizeDirectionTimer.IsFinished == true)
-                {
-                    _movePosition = UnityEngine.Random.onUnitSphere * _patrolPoint.Radius + _patrolPoint.transform.position;
-                    _randomizeDirectionTimer.Start(_randomSelectMovePointType);
-                }
-            }
-            else
-                _movePosition = _patrolPoint.transform.position; */
+            }           
         }
 
         private void ActionEvadeCollision()
