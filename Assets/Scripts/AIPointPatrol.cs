@@ -10,7 +10,7 @@ namespace SpaceShooter
 
         private static readonly Color s_gizmoColor = new Color(1, 0, 0, 0.3f);
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = s_gizmoColor;
             Gizmos.DrawSphere(transform.position, Radius);

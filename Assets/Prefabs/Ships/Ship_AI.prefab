@@ -309,6 +309,7 @@ MonoBehaviour:
   _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
   _spriteRenderer: {fileID: 5450679955272050884}
   _teamID: 1
+  _damagePS: {fileID: 8515199646564017045, guid: 4e3d5b76806ca8d4e9f61a14467e0269, type: 3}
   _mass: 1
   _thrust: 2000
   _mobility: 2000
@@ -320,7 +321,7 @@ MonoBehaviour:
   - {fileID: 7139701457106100542}
   _maxEnergy: 500
   _maxAmmo: 30
-  _defaultEnergy: 20
+  _defaultEnergy: 500
   _defaultAmmo: 10
   _energyRegenPerSecond: 1
 --- !u!96 &7139701456329054315
@@ -483,12 +484,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _behaviour: 1
   _patrolPoint: {fileID: 0}
-  _navigationLinear: 0.205
-  _navigationAngular: 0.854
+  _navigationLinear: 0.505
+  _navigationAngular: 1
   _randomSelectMovePointType: 5
   _findNewTargetTime: 1
-  _shootDelay: 0.5
+  _shootDelay: 1
   _evadeRayLength: 10
+  _positionToStopInFrontOfEnemy: 10
+  _positionToFire: 15
 --- !u!1 &5450679955272050890
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 0
-  _turretProperties: {fileID: 11400000, guid: f15d1b4d6a56bcd49aa2cbdc5f8a5a4b, type: 2}
+  _turretProperties: {fileID: 11400000, guid: 5dd3784774aaff7479f3f253f78c2baf, type: 2}
 --- !u!1 &7139701457937546909
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,4 +731,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 0
-  _turretProperties: {fileID: 11400000, guid: f15d1b4d6a56bcd49aa2cbdc5f8a5a4b, type: 2}
+  _turretProperties: {fileID: 11400000, guid: 5dd3784774aaff7479f3f253f78c2baf, type: 2}

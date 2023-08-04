@@ -16,6 +16,7 @@ namespace SpaceShooter
         [SerializeField] private ParticleSystem _destroyEffect;
         [SerializeField] protected SpriteRenderer _spriteRenderer;
         [SerializeField] protected int _teamID;
+        [SerializeField] ParticleSystem _damagePS;
 
         private static HashSet<Destructible> _allDestructibles;
 
@@ -53,6 +54,14 @@ namespace SpaceShooter
 
             CurrentHitPoints -= damage;
             OnHit?.Invoke(this, EventArgs.Empty);
+
+            if (_damagePS != null)
+            {
+                ParticleSystem particleSystem = Instantiate(_damagePS);
+                particleSystem.transform.position = transform.position;
+                particleSystem.Play();                
+                Destroy(particleSystem.gameObject, particleSystem.main.duration);
+            }            
 
             if (CurrentHitPoints <= 0)            
                 OnDeath();                                            
