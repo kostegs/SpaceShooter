@@ -1904,9 +1904,9 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2932375726205917484}
   _teamID: 0
   _mass: 1
-  _thrust: 1000
+  _thrust: 500
   _mobility: 2000
-  _maxLinearVelocity: 15
+  _maxLinearVelocity: 10
   _maxAngularVelocity: 100
   _turrets:
   - {fileID: 1620758391}

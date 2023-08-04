@@ -26,6 +26,10 @@ namespace SpaceShooter
         [SerializeField] private float _shootDelay;
         [SerializeField] private float _evadeRayLength;
 
+        [Header("Positions")]
+        [SerializeField] private int _positionToStopInFrontOfEnemy;
+        [SerializeField] private int _positionToFire;
+
         private SpaceShip _spaceShip;
         private Vector3 _movePosition;
         private Destructible _selectedTarget;        
@@ -66,8 +70,14 @@ namespace SpaceShooter
         {
             if(_selectedTarget != null && _fireTimer.IsFinished == true)
             {
-                _spaceShip.Fire(TurretMode.Primary);
-                _fireTimer.Restart();
+                var dest = (transform.position - _selectedTarget.transform.position).sqrMagnitude;
+
+                if (dest <= _positionToFire * _positionToFire)
+                {
+                    Vector3 orientation = (_movePosition - transform.position).normalized;
+                    _spaceShip.Fire(TurretMode.Primary, orientation);
+                    _fireTimer.Restart();
+                }                
             }            
         }
 
@@ -123,7 +133,7 @@ namespace SpaceShooter
             {
                 var dest = (transform.position - _selectedTarget.transform.position).sqrMagnitude;
 
-                if (dest <= 10 * 10)                
+                if (dest <= _positionToStopInFrontOfEnemy * _positionToStopInFrontOfEnemy)
                     speed = 0;                
             }                    
 
@@ -150,8 +160,8 @@ namespace SpaceShooter
         private Vector3 CalculateLeadPosition(Destructible selectedTarget)
         {
             Vector2 toTarget = transform.position - _selectedTarget.transform.position;
-            float xTime = toTarget.x / 10;
-            float yTime = toTarget.y / 10;            
+            float xTime = toTarget.x / 20;
+            float yTime = toTarget.y / 20;            
 
             float maxTime = Mathf.Max(Mathf.Abs(xTime), Mathf.Abs(yTime));
 

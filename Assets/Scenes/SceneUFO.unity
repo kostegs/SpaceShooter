@@ -13657,16 +13657,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _shootDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: _patrolPoint
       value: 
       objectReference: {fileID: 1360014606}
     - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _positionToFire
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: _navigationLinear
-      value: 1
+      value: 0.505
       objectReference: {fileID: 0}
     - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: _navigationAngular
-      value: 0.94
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056943057124326571, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _positionToStopInFrontOfEnemy
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5450679954037527832, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
       propertyPath: m_RootOrder
@@ -13728,6 +13740,14 @@ PrefabInstance:
       propertyPath: _defaultEnergy
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 7139701457333529544, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _turretProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: 5dd3784774aaff7479f3f253f78c2baf, type: 2}
+    - target: {fileID: 7139701457937546911, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
+      propertyPath: _turretProperties
+      value: 
+      objectReference: {fileID: 11400000, guid: 5dd3784774aaff7479f3f253f78c2baf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca97791701b77974cbaf6eabfdcecaec, type: 3}
 --- !u!1 &1084721866
@@ -15045,6 +15065,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPointNumber: 0
+--- !u!1 &1158204883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158204884}
+  m_Layer: 0
+  m_Name: DamageParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1158204884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158204883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159057830
 GameObject:
   m_ObjectHideFlags: 0

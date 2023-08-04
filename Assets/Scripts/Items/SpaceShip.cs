@@ -147,6 +147,19 @@ namespace SpaceShooter
             }
         }
 
+        public void Fire(TurretMode mode, Vector3 dest)
+        {
+            foreach (Turret turret in _turrets)
+            {
+                if (turret.Mode == mode)
+                {
+                    if (turret.Fire(out Projectile projectile))                                        
+                        projectile.transform.up = dest;
+                }
+                    
+            }
+        }
+
         private void InitOffensive()
         {
             PrimaryEnergy = _defaultEnergy;

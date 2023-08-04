@@ -26,17 +26,25 @@ namespace SpaceShooter
         #endregion
 
         // Public API
+
         public void Fire()
         {
+            Fire(out Projectile projectile);
+        }
+
+        public bool Fire(out Projectile projectile)
+        {
+            projectile = null;
+
             if (_turretProperties == null || _refireTimer > 0)
-                return;
+                return false;
 
             if (_ship.DrawEnergy(_turretProperties.EnergyUsage) == false
                 ||
                 _ship.DrawAmmo(_turretProperties.AmmoUsage) == false)
-                return;
+                return false;
 
-            Projectile projectile = Instantiate(_turretProperties.ProjectilePrefab, transform.position, Quaternion.identity)
+            projectile = Instantiate(_turretProperties.ProjectilePrefab, transform.position, Quaternion.identity)
                                                 .GetComponent<Projectile>();
 
             projectile.transform.up = transform.up;
@@ -47,6 +55,8 @@ namespace SpaceShooter
             {
                 // SFX
             }
+
+            return true;
         }
 
         public void AssignLoadOut(TurretProperties properties)
