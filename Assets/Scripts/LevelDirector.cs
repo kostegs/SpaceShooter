@@ -13,6 +13,7 @@ namespace SpaceShooter
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private LevelPoint[] _spawnPoints;
+        [SerializeField] private LevelPoint[] _enemyPoints;
 
         [Header("UFO Platform Animation")]
         [SerializeField] private Platform _platform;
@@ -27,6 +28,9 @@ namespace SpaceShooter
         [SerializeField] private Collider2D _wallCollider;
         [SerializeField] private LevelPoint _endLevelPoint;        
         [SerializeField] private Image _blackScreenImage;
+
+        [Header("Enemy Animation")]
+        [SerializeField] private SpaceShip _enemyAnimationShip;
 
         private Player _playerScript;
         private PlayerSpaceShip _spaceShip;

@@ -9,11 +9,15 @@ namespace SpaceShooter
         public enum AIBehaviour
         {
             Null,
-            Patrol
+            Patrol,
+            Attack,
+            AttackCollision
         }
 
         [SerializeField] private AIBehaviour _behaviour;
-        [SerializeField] private AIPointPatrol _patrolPoint;
+
+        [Header("Patrol points")]
+        [SerializeField] private LevelPoint[] _patrolPoints;
 
         [Range(0f, 1f)]
         [SerializeField] private float _navigationLinear;
@@ -32,17 +36,23 @@ namespace SpaceShooter
 
         private SpaceShip _spaceShip;
         private Vector3 _movePosition;
-        private Destructible _selectedTarget;        
+        private Destructible _selectedTarget;
         private const float MAX_ANGLE = 90.0F;
-        
+
         private Timer _randomizeDirectionTimer;
         private Timer _fireTimer;
         private Timer _findNewTargetTimer;
+
+        private LevelPoint _currentPatrolPoint;
+        private int _patrolPointCounter;
+        private int _additionToNextPatrolPoint = 1;
+        private AIBehaviour _savedBehaviour;
 
         private void Start()
         {
             _spaceShip = GetComponent<SpaceShip>();
             InitTimers();
+            SetPatrolBehaviour();
         }
 
         private void Update()
@@ -53,18 +63,25 @@ namespace SpaceShooter
 
         private void UpdateAI()
         {
-            if(_behaviour == AIBehaviour.Patrol)
-                UpdateBehaviourPatrol();            
+            if (_behaviour == AIBehaviour.Patrol)
+                UpdateBehaviourPatrol();
+            else if (_behaviour == AIBehaviour.AttackCollision)
+                UpdateBehaviourAttackCollision();
         }
 
         private void UpdateBehaviourPatrol()
         {
             ActionFindNewMovePosition();
             ActionControlShip();
-            ActionFindNewAttackTarget();
-            ActionFire();
+            // ActionFindNewAttackTarget();            
             ActionEvadeCollision();
         }
+        private void UpdateBehaviourAttackCollision()
+        {
+            UpdateBehaviourPatrol();
+            ActionFire();
+        }
+
 
         private void ActionFire()
         {
@@ -110,13 +127,13 @@ namespace SpaceShooter
                 if (dest.TryGetComponent<PlayerSpaceShip>(out PlayerSpaceShip destSpaceShip))                
                     return dest;                    
                 
-                float dist = (dest.transform.position - _spaceShip.transform.position).sqrMagnitude;
+                /*float dist = (dest.transform.position - _spaceShip.transform.position).sqrMagnitude;
 
                 if (dist < maxDist)
                 {
                     maxDist = dist;
                     potentionalTarget = dest;
-                }                    
+                }     */               
             }
 
             return potentionalTarget;
@@ -136,7 +153,6 @@ namespace SpaceShooter
 
             _spaceShip.ThrustControl = speed;
             _spaceShip.TorqueControl = ComputeAliginTorqueNormalize(_movePosition, _spaceShip.transform) * _navigationAngular;
-
         }
 
         private float ComputeAliginTorqueNormalize(Vector3 targetPosition, Transform ship)
@@ -147,9 +163,7 @@ namespace SpaceShooter
             angle = Mathf.Clamp(angle, -MAX_ANGLE, MAX_ANGLE) / MAX_ANGLE;
 
             if (_selectedTarget != null)
-                angle *= 10;
-
-            
+                angle *= 10;           
 
             return -angle;
         }
@@ -162,16 +176,8 @@ namespace SpaceShooter
 
             float maxTime = Mathf.Max(Mathf.Abs(xTime), Mathf.Abs(yTime));
 
-            /*
-            Debug.Log($"Max time {maxTime}");
-
-            Debug.Log($"Velocity: {selectedTarget.GetComponent<Rigidbody2D>().velocity}");
-            Debug.Log($"selected target.position {selectedTarget.transform.position}");*/
-
             Vector2 goalPosition = (Vector2)selectedTarget.transform.position + (selectedTarget.GetComponent<Rigidbody2D>().velocity * maxTime);
-
-            //Debug.Log($"goalPosition {goalPosition}");
-
+            
             Debug.DrawLine(Vector2.zero, goalPosition, Color.yellow);
 
             return (Vector3)goalPosition;
@@ -179,33 +185,75 @@ namespace SpaceShooter
 
         private void ActionFindNewMovePosition()
         {
-            if (_behaviour != AIBehaviour.Patrol || _patrolPoint == null)
-                return;
+            if (_behaviour == AIBehaviour.Patrol && _currentPatrolPoint != null)
+            {
+                if (_movePosition != _currentPatrolPoint.transform.position)
+                    _movePosition = _currentPatrolPoint.transform.position;
 
-            if (_selectedTarget != null)
+                float dist = (transform.position - _currentPatrolPoint.transform.position).sqrMagnitude;
+
+                if (dist <= 1 && dist >= 0)
+                {
+                    if ((_patrolPointCounter == _patrolPoints.Length && _additionToNextPatrolPoint == 1) 
+                        || (_patrolPointCounter == 0 && _additionToNextPatrolPoint == -1))                   
+                            _additionToNextPatrolPoint = -_additionToNextPatrolPoint;
+                    
+
+                    _patrolPointCounter += _additionToNextPatrolPoint;
+                    _currentPatrolPoint = _patrolPoints[_patrolPointCounter];
+                    _movePosition = _currentPatrolPoint.transform.position;                    
+                }
+            }
+            else if ((_behaviour == AIBehaviour.Attack || _behaviour == AIBehaviour.AttackCollision) && _selectedTarget != null)
             {
                 //_movePosition = _selectedTarget.transform.position;
                 _movePosition = CalculateLeadPosition(_selectedTarget);
-                return;
             }
 
-            if (_randomizeDirectionTimer.IsFinished == true)
+            /*if (_randomizeDirectionTimer.IsFinished == true)
             {
                 _movePosition = UnityEngine.Random.onUnitSphere * _patrolPoint.Radius + _patrolPoint.transform.position;
                 _randomizeDirectionTimer.Start(_randomSelectMovePointType);
-            }           
+            }     */      
         }
 
         private void ActionEvadeCollision()
         {
-            if(Physics2D.Raycast(transform.position, transform.up, _evadeRayLength))            
-                _movePosition = transform.position + transform.right * 50f;            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, _evadeRayLength);
+
+            if (hit)
+            {
+                if (_behaviour == AIBehaviour.AttackCollision)
+                    return;
+
+                if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest))
+                {
+                    _selectedTarget = dest;
+                
+                    _savedBehaviour = _behaviour;
+                    _behaviour = AIBehaviour.AttackCollision;
+
+                    Debug.Log($"beh {_behaviour}, saved beh {_savedBehaviour}");
+                }
+            }
+            else
+            {
+                if (_behaviour == AIBehaviour.AttackCollision)
+                {
+                    _behaviour = _savedBehaviour;
+                    _selectedTarget = null;
+                }
+                    
+            }
+
         }
 
-        private void SetPatrolBehaviour(AIPointPatrol pointPatrol)
+        private void SetPatrolBehaviour()
         {
             _behaviour = AIBehaviour.Patrol;
-            _patrolPoint = pointPatrol;
+            _savedBehaviour = _behaviour;
+            _currentPatrolPoint = _patrolPoints[0];
+            _movePosition = _currentPatrolPoint.transform.position;
         }
 
         #region Timers
