@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -93,8 +94,12 @@ namespace SpaceShooter
                 {
                     Vector3 orientation = (_movePosition - transform.position);
                     //Debug.DrawLine(transform.position, transform.position + ((_movePosition - transform.position)), Color.blue); 
-                    _spaceShip.Fire(TurretMode.Primary, orientation);
-                    _fireTimer.Restart();
+                    
+                    if (_fireTimer.IsFinished == true)
+                    {
+                        _spaceShip.Fire(TurretMode.Primary, orientation);
+                        _fireTimer.Restart();
+                    }                   
                 }                
             }            
         }
@@ -191,10 +196,10 @@ namespace SpaceShooter
                     _movePosition = _currentPatrolPoint.transform.position;
 
                 float dist = (transform.position - _currentPatrolPoint.transform.position).sqrMagnitude;
-
-                if (dist <= 1 && dist >= 0)
+                
+                if (dist <= 40 && dist >= 0)
                 {
-                    if ((_patrolPointCounter == _patrolPoints.Length && _additionToNextPatrolPoint == 1) 
+                    if ((_patrolPointCounter == _patrolPoints.Length-1 && _additionToNextPatrolPoint == 1) 
                         || (_patrolPointCounter == 0 && _additionToNextPatrolPoint == -1))                   
                             _additionToNextPatrolPoint = -_additionToNextPatrolPoint;
                     
@@ -219,28 +224,32 @@ namespace SpaceShooter
 
         private void ActionEvadeCollision()
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, _evadeRayLength);
+            //RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, _evadeRayLength);
+
+            Vector2 size = new Vector2(1, 1);
+            RaycastHit2D hit = Physics2D.BoxCast(transform.position, size, 0f, transform.up, _evadeRayLength);
 
             if (hit)
             {
-                if (_behaviour == AIBehaviour.AttackCollision)
+                if (_behaviour == AIBehaviour.AttackCollision && _selectedTarget != null)
                     return;
 
                 if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest))
                 {
                     _selectedTarget = dest;
                 
-                    _savedBehaviour = _behaviour;
-                    _behaviour = AIBehaviour.AttackCollision;
-
-                    Debug.Log($"beh {_behaviour}, saved beh {_savedBehaviour}");
+                    if (_behaviour != AIBehaviour.AttackCollision)
+                    {
+                        _savedBehaviour = _behaviour;
+                        _behaviour = AIBehaviour.AttackCollision;
+                    }                    
                 }
             }
             else
             {
                 if (_behaviour == AIBehaviour.AttackCollision)
                 {
-                    _behaviour = _savedBehaviour;
+                    SetPatrolBehaviour();
                     _selectedTarget = null;
                 }
                     
@@ -252,8 +261,12 @@ namespace SpaceShooter
         {
             _behaviour = AIBehaviour.Patrol;
             _savedBehaviour = _behaviour;
-            _currentPatrolPoint = _patrolPoints[0];
-            _movePosition = _currentPatrolPoint.transform.position;
+            
+            if (_currentPatrolPoint == null)
+            {
+                _currentPatrolPoint = _patrolPoints[0];
+                _movePosition = _currentPatrolPoint.transform.position;
+            }            
         }
 
         #region Timers
