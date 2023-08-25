@@ -11,7 +11,7 @@ namespace SpaceShooter
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.GetComponentInParent<SpaceShip>() != null)
+            if (other.GetComponentInParent<PlayerSpaceShip>() != null)
                 LevelPointEnter?.Invoke(this, new LevelPointEventArgs(_spawnPointNumber));
         }
     }

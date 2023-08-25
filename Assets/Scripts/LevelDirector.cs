@@ -12,6 +12,7 @@ namespace SpaceShooter
         [SerializeField] private SpaceShipSpawner _spawner;        
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _mainCamera;
+        [SerializeField] private CameraController _cameraController;
         [SerializeField] private LevelPoint[] _spawnPoints;
         [SerializeField] private LevelPoint[] _enemyPoints;
 
@@ -31,6 +32,7 @@ namespace SpaceShooter
 
         [Header("Enemy Animation")]
         [SerializeField] private SpaceShip _enemyAnimationShip;
+        [SerializeField] private LevelPoint _levelPointStartEnemyAnimation;
 
         private Player _playerScript;
         private PlayerSpaceShip _spaceShip;
@@ -44,7 +46,13 @@ namespace SpaceShooter
             SubscribeToSpawnPoints();            
             _platform.PlatformStartAnimation += OnPlatformStartAnimation;
             _endPlatform.PlatformStartAnimation += OnEndPlatformStartAnimation;
-        }   
+            _levelPointStartEnemyAnimation.LevelPointEnter += _levelPointStartEnemyAnimation_LevelPointEnter;
+        }
+
+        private void _levelPointStartEnemyAnimation_LevelPointEnter(object sender, LevelPointEventArgs e)
+        {
+            _cameraController.SetTarget(_enemyAnimationShip.transform);
+        }
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)
         {
