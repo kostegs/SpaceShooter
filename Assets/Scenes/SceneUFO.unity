@@ -2381,7 +2381,7 @@ MonoBehaviour:
     \u043D\u0430\u0436\u043C\u0438 \"E\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3370d9e71e082ae4a9d3cdbd6b705816, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 7025528762412790466, guid: 3370d9e71e082ae4a9d3cdbd6b705816, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -29746,6 +29746,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1548517424, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1903805288, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}
       propertyPath: _UFO
       value: 

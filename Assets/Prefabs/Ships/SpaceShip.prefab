@@ -1923,6 +1923,7 @@ MonoBehaviour:
   _UIInvulnerabilityPanel: {fileID: 2626458158483514514}
   _UISpeedPanel: {fileID: 6713819927296309425}
   _speedometerIcon: {fileID: 167842911481609035}
+  _hud: {fileID: 1548517424}
 --- !u!1 &2932375726205917474
 GameObject:
   m_ObjectHideFlags: 0

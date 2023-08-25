@@ -52,6 +52,7 @@ namespace SpaceShooter
         private void _levelPointStartEnemyAnimation_LevelPointEnter(object sender, LevelPointEventArgs e)
         {
             _cameraController.SetTarget(_enemyAnimationShip.transform);
+            _spaceShip.HudVisibility(false);
         }
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)

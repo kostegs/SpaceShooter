@@ -12,6 +12,7 @@ namespace SpaceShooter
         [SerializeField] private GameObject _UIInvulnerabilityPanel;
         [SerializeField] private GameObject _UISpeedPanel;
         [SerializeField] private GameObject _speedometerIcon;
+        [SerializeField] private GameObject _hud;
 
         /// <summary>
         /// Coroutines
@@ -48,6 +49,8 @@ namespace SpaceShooter
         }
 
         public void TuneHud(Transform target, Camera mainCamera) => _UIArrow?.TuneHud(target, mainCamera);
+
+        public void HudVisibility(bool visibility) => _hud.SetActive(visibility);
 
         public void AddEnergy(int energy) => PrimaryEnergy = Mathf.Clamp(PrimaryEnergy + energy, 0, _maxEnergy);
 
