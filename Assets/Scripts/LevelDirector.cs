@@ -8,6 +8,12 @@ namespace SpaceShooter
 {
     public class LevelDirector : MonoBehaviour
     {
+        private enum PlayMode
+        {
+            Play,
+            EnemyAnimation
+        };
+
         [SerializeField] private GameObject _playerContainer;
         [SerializeField] private SpaceShipSpawner _spawner;        
         [SerializeField] private Transform _target;
@@ -33,10 +39,13 @@ namespace SpaceShooter
         [Header("Enemy Animation")]
         [SerializeField] private SpaceShip _enemyAnimationShip;
         [SerializeField] private LevelPoint _levelPointStartEnemyAnimation;
+        [SerializeField] private GameObject _enemyAnimationText;
+
 
         private Player _playerScript;
         private PlayerSpaceShip _spaceShip;
         private int _currentSpawnPoint = 0;
+        private PlayMode _playMode;
         
 
         private void Start()
@@ -49,10 +58,28 @@ namespace SpaceShooter
             _levelPointStartEnemyAnimation.LevelPointEnter += _levelPointStartEnemyAnimation_LevelPointEnter;
         }
 
-        private void _levelPointStartEnemyAnimation_LevelPointEnter(object sender, LevelPointEventArgs e)
+        private void Update()
+        {
+            if (_playMode == PlayMode.EnemyAnimation && Input.GetKey(KeyCode.E))
+                StopEnemyAnimation();
+        }
+
+        private void _levelPointStartEnemyAnimation_LevelPointEnter(object sender, LevelPointEventArgs e) => StartEnemyAnimation();
+
+        private void StartEnemyAnimation()
         {
             _cameraController.SetTarget(_enemyAnimationShip.transform);
             _spaceShip.HudVisibility(false);
+            _enemyAnimationText.SetActive(true);
+            _playMode = PlayMode.EnemyAnimation;
+        }
+
+        private void StopEnemyAnimation()
+        {
+            _cameraController.SetTarget(_spaceShip.transform);
+            _spaceShip.HudVisibility(true);
+            _enemyAnimationText.SetActive(false);
+            _playMode = PlayMode.Play;
         }
 
         private void OnSpaceShipDestruct(object sender, System.EventArgs e)
