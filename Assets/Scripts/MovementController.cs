@@ -7,7 +7,7 @@ namespace SpaceShooter
         public enum ControlMode
         {
             Keyboard,
-            Mobile
+            Mobile         
         }
 
         [SerializeField] private SpaceShip _targetShip;

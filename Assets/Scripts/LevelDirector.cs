@@ -11,7 +11,8 @@ namespace SpaceShooter
         private enum PlayMode
         {
             Play,
-            EnemyAnimation
+            EnemyAnimation,
+            EnemyAttack
         };
 
         [SerializeField] private GameObject _playerContainer;
@@ -41,12 +42,15 @@ namespace SpaceShooter
         [SerializeField] private LevelPoint _levelPointStartEnemyAnimation;
         [SerializeField] private GameObject _enemyAnimationText;
 
+        [Header("Enemy attack")]
+        [SerializeField] private LevelPoint _levelPointStartEnemyAttack;
+        [SerializeField] private AIController[] _enemyShips;
+        [SerializeField] private MovementController _movementController;
 
         private Player _playerScript;
         private PlayerSpaceShip _spaceShip;
         private int _currentSpawnPoint = 0;
-        private PlayMode _playMode;
-        
+        private PlayMode _playMode;        
 
         private void Start()
         {
@@ -56,6 +60,17 @@ namespace SpaceShooter
             _platform.PlatformStartAnimation += OnPlatformStartAnimation;
             _endPlatform.PlatformStartAnimation += OnEndPlatformStartAnimation;
             _levelPointStartEnemyAnimation.LevelPointEnter += _levelPointStartEnemyAnimation_LevelPointEnter;
+            _levelPointStartEnemyAttack.LevelPointEnter += _levelPointStartEnemyAttack_LevelPointEnter;
+        }
+
+        private void _levelPointStartEnemyAttack_LevelPointEnter(object sender, LevelPointEventArgs e) => SetDependenciesToEnemies();
+
+        private void SetDependenciesToEnemies()
+        {
+            foreach (AIController enemyShip in _enemyShips)
+            {
+                enemyShip.SetTarget(_spaceShip);
+            }
         }
 
         private void Update()
@@ -69,6 +84,13 @@ namespace SpaceShooter
         private void StartEnemyAnimation()
         {
             _cameraController.SetTarget(_enemyAnimationShip.transform);
+
+            // Stop Player's ship
+            _movementController = _playerContainer.GetComponent<MovementController>();
+            _movementController.enabled = false;
+            _spaceShip.ThrustControl = 0f;
+            _spaceShip.TorqueControl = 0f;
+
             _spaceShip.HudVisibility(false);
             _enemyAnimationText.SetActive(true);
             _playMode = PlayMode.EnemyAnimation;
@@ -77,6 +99,8 @@ namespace SpaceShooter
         private void StopEnemyAnimation()
         {
             _cameraController.SetTarget(_spaceShip.transform);
+            _movementController = _playerContainer.GetComponent<MovementController>();
+            _movementController.enabled = true;
             _spaceShip.HudVisibility(true);
             _enemyAnimationText.SetActive(false);
             _playMode = PlayMode.Play;
@@ -116,6 +140,9 @@ namespace SpaceShooter
 
                 _playerContainer.SetActive(true);
             }
+
+            if (_playMode == PlayMode.EnemyAttack)
+                SetDependenciesToEnemies();
 
         }
 

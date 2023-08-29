@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace SpaceShooter
@@ -68,13 +69,14 @@ namespace SpaceShooter
                 UpdateBehaviourPatrol();
             else if (_behaviour == AIBehaviour.AttackCollision)
                 UpdateBehaviourAttackCollision();
+            else if (_behaviour == AIBehaviour.Attack)
+                UpdateBehaviourAttack();
         }
 
         private void UpdateBehaviourPatrol()
         {
             ActionFindNewMovePosition();
-            ActionControlShip();
-            // ActionFindNewAttackTarget();            
+            ActionControlShip();            
             ActionEvadeCollision();
         }
         private void UpdateBehaviourAttackCollision()
@@ -83,6 +85,11 @@ namespace SpaceShooter
             ActionFire();
         }
 
+        private void UpdateBehaviourAttack()
+        {
+            UpdateBehaviourPatrol();
+            ActionFire();
+        }
 
         private void ActionFire()
         {
@@ -92,8 +99,7 @@ namespace SpaceShooter
 
                 if (dest <= _positionToFire * _positionToFire)
                 {
-                    Vector3 orientation = (_movePosition - transform.position);
-                    //Debug.DrawLine(transform.position, transform.position + ((_movePosition - transform.position)), Color.blue); 
+                    Vector3 orientation = (_movePosition - transform.position);                    
                     
                     if (_fireTimer.IsFinished == true)
                     {
@@ -102,46 +108,6 @@ namespace SpaceShooter
                     }                   
                 }                
             }            
-        }
-
-        private void ActionFindNewAttackTarget()
-        {
-            if(_findNewTargetTimer.IsFinished == true)
-            {
-                _selectedTarget = FindNearestDestructibleTarget();
-                _findNewTargetTimer.Restart();
-            }            
-        }
-
-        private Destructible FindNearestDestructibleTarget()
-        {
-            //float maxDist = float.MaxValue;
-            float maxDist = 10 * 10;
-
-            Destructible potentionalTarget = null;
-
-            foreach(var dest in Destructible.AllDestructibles)
-            {
-                // Don't check the current object or common team.
-                /*if (dest.TryGetComponent<SpaceShip>(out SpaceShip destSpaceShip))
-                {
-                    if (destSpaceShip == _spaceShip || destSpaceShip.TeamID == _spaceShip.TeamID)
-                        continue;
-                }*/
-
-                if (dest.TryGetComponent<PlayerSpaceShip>(out PlayerSpaceShip destSpaceShip))                
-                    return dest;                    
-                
-                /*float dist = (dest.transform.position - _spaceShip.transform.position).sqrMagnitude;
-
-                if (dist < maxDist)
-                {
-                    maxDist = dist;
-                    potentionalTarget = dest;
-                }     */               
-            }
-
-            return potentionalTarget;
         }
 
         private void ActionControlShip()
@@ -211,20 +177,14 @@ namespace SpaceShooter
             }
             else if ((_behaviour == AIBehaviour.Attack || _behaviour == AIBehaviour.AttackCollision) && _selectedTarget != null)
             {
-                //_movePosition = _selectedTarget.transform.position;
                 _movePosition = CalculateLeadPosition(_selectedTarget);
-            }
-
-            /*if (_randomizeDirectionTimer.IsFinished == true)
-            {
-                _movePosition = UnityEngine.Random.onUnitSphere * _patrolPoint.Radius + _patrolPoint.transform.position;
-                _randomizeDirectionTimer.Start(_randomSelectMovePointType);
-            }     */      
+            }    
         }
 
         private void ActionEvadeCollision()
         {
-            //RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, _evadeRayLength);
+            if (_behaviour == AIBehaviour.Attack)
+                return;
 
             Vector2 size = new Vector2(1, 1);
             RaycastHit2D hit = Physics2D.BoxCast(transform.position, size, 0f, transform.up, _evadeRayLength);
@@ -234,7 +194,7 @@ namespace SpaceShooter
                 if (_behaviour == AIBehaviour.AttackCollision && _selectedTarget != null)
                     return;
 
-                if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest))
+                if (hit.collider.transform.root.TryGetComponent<Destructible>(out Destructible dest) & hit.collider.transform.root.TryGetComponent<AIController>(out _) == false)
                 {
                     _selectedTarget = dest;
                 
@@ -251,10 +211,14 @@ namespace SpaceShooter
                 {
                     SetPatrolBehaviour();
                     _selectedTarget = null;
-                }
-                    
+                }                    
             }
+        }
 
+        public void SetTarget(Destructible target)
+        {
+            _selectedTarget = target;
+            _behaviour = AIBehaviour.Attack;
         }
 
         private void SetPatrolBehaviour()
