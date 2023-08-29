@@ -8,16 +8,15 @@ namespace SpaceShooter
     {
         [SerializeField] private TurretMode _mode;
         [SerializeField] private TurretProperties _turretProperties;
+        [SerializeField] private SpaceShip _ship;
 
         private float _refireTimer;
-        private SpaceShip _ship;
-
+        
         public TurretMode Mode => _mode;
         public bool CanFire => _refireTimer <= 0;
 
         #region UnityEvents
-        private void Start() => _ship = transform.root.GetComponent<SpaceShip>();
-
+        
         private void Update()
         {
             if (_refireTimer > 0) 

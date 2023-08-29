@@ -563,6 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mode: 1
   _turretProperties: {fileID: 11400000, guid: d103140c34540ed4d95c8ff37f433ed7, type: 2}
+  _ship: {fileID: 134326842713158568}
 --- !u!1 &1548517424
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mode: 0
   _turretProperties: {fileID: 11400000, guid: f15d1b4d6a56bcd49aa2cbdc5f8a5a4b, type: 2}
+  _ship: {fileID: 134326842713158568}
 --- !u!1 &1600841876
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,6 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mode: 0
   _turretProperties: {fileID: 11400000, guid: f15d1b4d6a56bcd49aa2cbdc5f8a5a4b, type: 2}
+  _ship: {fileID: 134326842713158568}
 --- !u!1 &1658257443
 GameObject:
   m_ObjectHideFlags: 0
