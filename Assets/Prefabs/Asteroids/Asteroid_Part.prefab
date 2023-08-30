@@ -71,9 +71,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nickName: 
   _indestructible: 0
-  _hitPoints: 3000
+  _hitPoints: 1000
   _destroyEffect: {fileID: 9046492918233966412, guid: 116d2a167414e6c40a25003ea46304d7, type: 3}
   _spriteRenderer: {fileID: 4225618252363964299}
+  _teamID: 0
+  _damagePS: {fileID: 0}
   _size: 1
   _asteroidPartPrefab: {fileID: 0}
 --- !u!114 &9150279957036218561

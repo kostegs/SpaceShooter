@@ -26,10 +26,7 @@ namespace SpaceShooter
 
         // Public API
 
-        public void Fire()
-        {
-            Fire(out Projectile projectile);
-        }
+        public void Fire() => Fire(out Projectile projectile);
 
         public bool Fire(out Projectile projectile)
         {
