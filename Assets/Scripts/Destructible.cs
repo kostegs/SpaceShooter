@@ -81,5 +81,13 @@ namespace SpaceShooter
 
         private void OnDestroy() => _allDestructibles.Remove(this);
 
+        #region Score
+
+        [SerializeField] private int _scoreValue;
+
+        public int ScoreValue => _scoreValue;
+
+        #endregion
+
     }
 }

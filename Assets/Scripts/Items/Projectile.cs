@@ -35,6 +35,10 @@ namespace SpaceShooter
                 {
                     dest.ApplyDamage(_damage);
                     OnProjectileLifeEnd();
+
+                    if (_parent == Player.Instance.ActiveShip) 
+                        Player.Instance.AddScore(dest.ScoreValue);
+
                 }
                 else if (hit.collider.transform.root.TryGetComponent<Destructive>(out Destructive destructive) && destructive.GetComponent<SpaceShip>() != _parent)
                 {

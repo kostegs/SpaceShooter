@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoSingleton<Player>
     {
         [SerializeField] private int _numberOfLives;
         [SerializeField] private CameraController _cameraController;
@@ -28,6 +28,17 @@ namespace SpaceShooter
             SubscribeToSpaceShip();
             _cameraController.SetTarget(_spaceShip.transform);
             _movementController.SetTarget(_spaceShip);
-        } 
+        }
+
+        #region Score
+
+        public int Score { get; private set; }
+        public int NumKills { get; private set; }
+
+        public void AddKill() => NumKills++;
+
+        public void AddScore(int num) => Score += num;
+
+        #endregion
     }
 }

@@ -76,6 +76,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 4225618252363964299}
   _teamID: 0
   _damagePS: {fileID: 0}
+  _scoreValue: 5
   _size: 1
   _asteroidPartPrefab: {fileID: 0}
 --- !u!114 &9150279957036218561

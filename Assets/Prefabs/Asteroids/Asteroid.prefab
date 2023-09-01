@@ -205,6 +205,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 198944468247688803}
   _teamID: 0
   _damagePS: {fileID: 0}
+  _scoreValue: 15
   _size: 0
   _asteroidPartPrefab: {fileID: 7967720979008407245, guid: ed4469d4207f16c4cb115a4a29d391ae, type: 3}
 --- !u!114 &8025230660686475468
