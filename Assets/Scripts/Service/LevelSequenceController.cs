@@ -6,10 +6,11 @@ namespace SpaceShooter
     public class LevelSequenceController : MonoSingleton<LevelSequenceController>
     {
         public static string MainMenuSceneNickName = "MainMenu";
+        public static GameObject PlayerShipPrefab { get; set; }
 
         public Episode CurrentEpisode { get; private set; }
 
-        public int CurrentLevel { get; private set; }
+        public int CurrentLevel { get; private set; }        
 
         public void StartEpisode(Episode e)
         {
@@ -28,7 +29,8 @@ namespace SpaceShooter
 
         public void FinishCurrentLevel(bool succes)
         {
-
+            if (succes)            
+                AdvanceLevel();            
         }
 
         public void AdvanceLevel()

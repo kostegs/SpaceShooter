@@ -18,7 +18,13 @@ namespace SpaceShooter
             set => _numberOfLives = value < 0 ? 0 : value;
         }
 
-        private void OnSpaceShipDestruct(object sender, System.EventArgs e) => _numberOfLives--;        
+        private void OnSpaceShipDestruct(object sender, System.EventArgs e) 
+        {
+            _numberOfLives--;
+
+            if (_numberOfLives <= 0)
+                LevelSequenceController.Instance.FinishCurrentLevel(false);
+        } 
 
         private void SubscribeToSpaceShip() => _spaceShip.OnDestruct += OnSpaceShipDestruct;
 

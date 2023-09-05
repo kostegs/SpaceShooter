@@ -134,7 +134,11 @@ namespace SpaceShooter
                 newShipRotation = Quaternion.Euler(new Vector3(0, 0, RandomRotation));
             }
 
-            _spaceShip = _spawner.SpawnPlayerSpaceShip(newShipPosition, newShipRotation);
+            if (LevelSequenceController.PlayerShipPrefab != null)
+                _spaceShip = _spawner.SpawnPlayerSpaceShip(LevelSequenceController.PlayerShipPrefab, newShipPosition, newShipRotation);
+            else
+                _spaceShip = _spawner.SpawnPlayerSpaceShip(newShipPosition, newShipRotation);
+
             _playerScript = _playerContainer.GetComponent<Player>();
 
             if (_spaceShip != null)
