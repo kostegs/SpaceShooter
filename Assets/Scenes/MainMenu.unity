@@ -341,7 +341,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 74757734}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 968254106}
+        m_TargetAssemblyTypeName: SpaceShooter.EpisodeSelectionController, Assembly-CSharp
+        m_MethodName: OnStartEpisodeButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &74757734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +661,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 392418501}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1618282137}
+        m_TargetAssemblyTypeName: SpaceShooter.EpisodeSelectionController, Assembly-CSharp
+        m_MethodName: OnStartEpisodeButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &392418501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,13 +723,14 @@ GameObject:
   - component: {fileID: 660123770}
   - component: {fileID: 660123772}
   - component: {fileID: 660123771}
+  - component: {fileID: 660123773}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &660123770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -767,6 +792,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660123769}
   m_CullTransparentMesh: 1
+--- !u!114 &660123773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660123769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252f997909d15bd4ebcfdf801a5120bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _episodeSelection: {fileID: 1773734813}
 --- !u!1 &706239520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1086,7 @@ GameObject:
   - component: {fileID: 968254103}
   - component: {fileID: 968254105}
   - component: {fileID: 968254104}
+  - component: {fileID: 968254106}
   m_Layer: 5
   m_Name: EpisodeEntryB
   m_TagString: Untagged
@@ -1116,6 +1155,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968254102}
   m_CullTransparentMesh: 1
+--- !u!114 &968254106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968254102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97bf9899234594648979ca754180cb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _episode: {fileID: 11400000, guid: 957171d3c2cea60499babbd5de0bd47f, type: 2}
+  _episodeNickName: {fileID: 706239522}
+  _previewImage: {fileID: 1693881165}
 --- !u!1 &1002127706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,6 +1873,7 @@ GameObject:
   - component: {fileID: 1219639204}
   - component: {fileID: 1219639206}
   - component: {fileID: 1219639205}
+  - component: {fileID: 1219639207}
   m_Layer: 5
   m_Name: EpisodeEntryC
   m_TagString: Untagged
@@ -1887,6 +1942,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219639203}
   m_CullTransparentMesh: 1
+--- !u!114 &1219639207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219639203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97bf9899234594648979ca754180cb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _episode: {fileID: 11400000, guid: 46e8954b6be667047b07e51ad8f3854e, type: 2}
+  _episodeNickName: {fileID: 1002127708}
+  _previewImage: {fileID: 1177027322}
 --- !u!1 &1248141326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,7 +2040,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1248141329}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1219639207}
+        m_TargetAssemblyTypeName: SpaceShooter.EpisodeSelectionController, Assembly-CSharp
+        m_MethodName: OnStartEpisodeButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1248141329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2092,7 +2174,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1543643996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 660123773}
+        m_TargetAssemblyTypeName: SpaceShooter.MainMenuController, Assembly-CSharp
+        m_MethodName: OnButtonStartNew
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1543643996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2322,6 +2416,7 @@ GameObject:
   - component: {fileID: 1618282134}
   - component: {fileID: 1618282136}
   - component: {fileID: 1618282135}
+  - component: {fileID: 1618282137}
   m_Layer: 5
   m_Name: EpisodeEntryA
   m_TagString: Untagged
@@ -2390,6 +2485,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618282133}
   m_CullTransparentMesh: 1
+--- !u!114 &1618282137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618282133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97bf9899234594648979ca754180cb48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _episode: {fileID: 11400000, guid: feebcb11837744043b3b3c9d256a2886, type: 2}
+  _episodeNickName: {fileID: 1095690287}
+  _previewImage: {fileID: 1192598248}
 --- !u!1 &1693881163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,7 +2593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1773734814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2504,7 +2614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.000015258789}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: -0.00012207031, y: 0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1773734815
@@ -2831,7 +2941,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2090862778}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 660123773}
+        m_TargetAssemblyTypeName: SpaceShooter.MainMenuController, Assembly-CSharp
+        m_MethodName: OnButtonExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2090862778
 MonoBehaviour:
   m_ObjectHideFlags: 0
