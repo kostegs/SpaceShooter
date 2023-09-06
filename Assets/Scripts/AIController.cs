@@ -217,7 +217,7 @@ namespace SpaceShooter
         {
             _selectedTarget = target;
             _behaviour = AIBehaviour.Attack;
-            transform.tag = "IgnoreCollision";
+             transform.tag = "IgnoreCollision";
         }
 
         private void SetPatrolBehaviour()

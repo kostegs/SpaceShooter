@@ -477,8 +477,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -747,8 +747,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1060,9 +1060,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1135679843}
-        m_TargetAssemblyTypeName: SpaceShooter.EpisodeSelectionController, Assembly-CSharp
-        m_MethodName: OnStartEpisodeButtonClicked
+      - m_Target: {fileID: 1135679846}
+        m_TargetAssemblyTypeName: PlayerShipSelectionController, Assembly-CSharp
+        m_MethodName: OnSelectShip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1660,9 +1660,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1069184517}
-        m_TargetAssemblyTypeName: SpaceShooter.EpisodeSelectionController, Assembly-CSharp
-        m_MethodName: OnStartEpisodeButtonClicked
+      - m_Target: {fileID: 1069184520}
+        m_TargetAssemblyTypeName: PlayerShipSelectionController, Assembly-CSharp
+        m_MethodName: OnSelectShip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1795,8 +1795,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2297,8 +2297,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2723,7 +2723,7 @@ GameObject:
   - component: {fileID: 1069184516}
   - component: {fileID: 1069184519}
   - component: {fileID: 1069184518}
-  - component: {fileID: 1069184517}
+  - component: {fileID: 1069184520}
   m_Layer: 5
   m_Name: ShipSelectB
   m_TagString: Untagged
@@ -2757,21 +2757,6 @@ RectTransform:
   m_AnchoredPosition: {x: 38, y: 0.000013351}
   m_SizeDelta: {x: 338.8447, y: 970.0769}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1069184517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069184515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97bf9899234594648979ca754180cb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _episode: {fileID: 11400000, guid: feebcb11837744043b3b3c9d256a2886, type: 2}
-  _episodeNickName: {fileID: 268270873}
-  _previewImage: {fileID: 2140575521}
 --- !u!114 &1069184518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,6 +2795,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069184515}
   m_CullTransparentMesh: 1
+--- !u!114 &1069184520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069184515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2460c491e1ee754d8d6a206203af9ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipPrefab: {fileID: 134326842713158568, guid: 4a1e6b818f3e70c45a54c7b9a33d443c, type: 3}
+  _shipName: {fileID: 268270873}
+  _hitPoints: {fileID: 107929270}
+  _speed: {fileID: 1814457620}
+  _agility: {fileID: 905648598}
+  _selectShipPanel: {fileID: 437191619}
+  _preview: {fileID: 2140575521}
 --- !u!1 &1095690285
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,8 +3034,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3226,7 +3230,7 @@ GameObject:
   - component: {fileID: 1135679842}
   - component: {fileID: 1135679845}
   - component: {fileID: 1135679844}
-  - component: {fileID: 1135679843}
+  - component: {fileID: 1135679846}
   m_Layer: 5
   m_Name: ShipSelectC
   m_TagString: Untagged
@@ -3260,21 +3264,6 @@ RectTransform:
   m_AnchoredPosition: {x: 593, y: 0.000013351}
   m_SizeDelta: {x: 338.8447, y: 970.0769}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1135679843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135679841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97bf9899234594648979ca754180cb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _episode: {fileID: 11400000, guid: feebcb11837744043b3b3c9d256a2886, type: 2}
-  _episodeNickName: {fileID: 1975774271}
-  _previewImage: {fileID: 2113183264}
 --- !u!114 &1135679844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,6 +3302,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135679841}
   m_CullTransparentMesh: 1
+--- !u!114 &1135679846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135679841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2460c491e1ee754d8d6a206203af9ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipPrefab: {fileID: 134326842713158568, guid: 0e3ef82893d32244d999905ad1657e38, type: 3}
+  _shipName: {fileID: 1975774271}
+  _hitPoints: {fileID: 1642932831}
+  _speed: {fileID: 1795361658}
+  _agility: {fileID: 1111828843}
+  _selectShipPanel: {fileID: 437191619}
+  _preview: {fileID: 2113183264}
 --- !u!1 &1177027320
 GameObject:
   m_ObjectHideFlags: 0
@@ -4048,9 +4056,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1412142750}
-        m_TargetAssemblyTypeName: SpaceShooter.EpisodeSelectionController, Assembly-CSharp
-        m_MethodName: OnStartEpisodeButtonClicked
+      - m_Target: {fileID: 1412142753}
+        m_TargetAssemblyTypeName: PlayerShipSelectionController, Assembly-CSharp
+        m_MethodName: OnSelectShip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4109,7 +4117,7 @@ GameObject:
   - component: {fileID: 1412142749}
   - component: {fileID: 1412142752}
   - component: {fileID: 1412142751}
-  - component: {fileID: 1412142750}
+  - component: {fileID: 1412142753}
   m_Layer: 5
   m_Name: ShipSelectA
   m_TagString: Untagged
@@ -4143,21 +4151,6 @@ RectTransform:
   m_AnchoredPosition: {x: -564, y: 0.000013351}
   m_SizeDelta: {x: 338.8447, y: 970.0769}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1412142750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412142748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97bf9899234594648979ca754180cb48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _episode: {fileID: 11400000, guid: feebcb11837744043b3b3c9d256a2886, type: 2}
-  _episodeNickName: {fileID: 993202777}
-  _previewImage: {fileID: 196637052}
 --- !u!114 &1412142751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4196,6 +4189,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412142748}
   m_CullTransparentMesh: 1
+--- !u!114 &1412142753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412142748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2460c491e1ee754d8d6a206203af9ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipPrefab: {fileID: 134326842713158568, guid: 1ee5ffebc2ec7f64a87b160c5f0bf747, type: 3}
+  _shipName: {fileID: 993202777}
+  _hitPoints: {fileID: 162996639}
+  _speed: {fileID: 1841730690}
+  _agility: {fileID: 639772917}
+  _selectShipPanel: {fileID: 437191619}
+  _preview: {fileID: 196637052}
 --- !u!1 &1543643993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4690,8 +4702,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5250,8 +5262,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5385,8 +5397,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5655,8 +5667,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.99
-  m_fontSizeBase: 37.99
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6280,7 +6292,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 660123773}
         m_TargetAssemblyTypeName: SpaceShooter.MainMenuController, Assembly-CSharp
-        m_MethodName: OnButtonStartNew
+        m_MethodName: OnButtonSelectSpaceShip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

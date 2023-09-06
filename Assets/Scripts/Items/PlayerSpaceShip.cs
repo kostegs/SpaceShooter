@@ -25,9 +25,9 @@ namespace SpaceShooter
         public event EventHandler<TimerEventArgs> TimerSpeedChanged;
         public event EventHandler<EventArgs> OnEnergyChanged;
         public event EventHandler<EventArgs> OnAmmoChanged;
-        
 
-        // Public Fields
+
+        #region PublicFields
         public override float PrimaryEnergy
         {
             get => _primaryEnergy;
@@ -37,6 +37,7 @@ namespace SpaceShooter
                 OnEnergyChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        #endregion
 
         public override int SecondaryAmmo
         {

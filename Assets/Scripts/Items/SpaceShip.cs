@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SpaceShooter
 {
@@ -55,6 +53,11 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] protected int _energyRegenPerSecond;
 
+        /// <summary>
+        /// Visual
+        /// </summary>
+        [SerializeField] private Sprite _previewImage;
+
         private Rigidbody2D _rigid;
         /// <summary>
         /// Current energy and ammos
@@ -102,6 +105,10 @@ namespace SpaceShooter
                 _secondaryAmmo = value;                
             }
         }
+
+        public float MaxLinearVelocity => _maxLinearVelocity;
+        public float MaxAngularVelocity => _maxAngularVelocity;
+        public Sprite PreviewImage => _previewImage;
 
         #endregion
 

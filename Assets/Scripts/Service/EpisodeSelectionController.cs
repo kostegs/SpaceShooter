@@ -2,10 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace SpaceShooter
 {
-
     public class EpisodeSelectionController : MonoBehaviour
     {
         [SerializeField] private Episode _episode;
