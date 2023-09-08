@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,10 @@ namespace SpaceShooter
 
         public Episode CurrentEpisode { get; private set; }
 
-        public int CurrentLevel { get; private set; }        
+        public int CurrentLevel { get; private set; }
+        
+        public bool LastLevelResult { get; private set; }
+        public PlayerStatistics LevelStatistics { get; private set; }
 
         public void StartEpisode(Episode e)
         {
@@ -18,6 +22,8 @@ namespace SpaceShooter
             CurrentLevel = 0;
 
             // сбрасываем статы перед началом эпизода
+            LevelStatistics = new PlayerStatistics();
+            LevelStatistics.Reset();
 
             UnityEngine.SceneManagement.SceneManager.LoadScene(e.Levels[CurrentLevel]);
         }
@@ -27,14 +33,21 @@ namespace SpaceShooter
             UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
         }
 
-        public void FinishCurrentLevel(bool succes)
+        public void FinishCurrentLevel(bool success)
         {
-            if (succes)            
+            LastLevelResult = success;
+            CalculateLevelStatistics();
+
+            ResultPanelController.Instance.ShowResults(LevelStatistics, success);
+
+            if (success)            
                 AdvanceLevel();            
         }
 
         public void AdvanceLevel()
         {
+            LevelStatistics.Reset();
+
             CurrentLevel++;
 
             if (CurrentEpisode.Levels.Length <= CurrentLevel)
@@ -43,5 +56,6 @@ namespace SpaceShooter
                 UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);            
         }
 
+        private void CalculateLevelStatistics() => LevelStatistics.CalculateLevelStatistics();
     }
 }

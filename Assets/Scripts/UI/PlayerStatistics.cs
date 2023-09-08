@@ -19,5 +19,13 @@ namespace SpaceShooter
             _score = 0;
             _time = 0;
         }
+
+        public void CalculateLevelStatistics()
+        {
+            _score = Player.Instance.Score;
+            _numKills = Player.Instance.NumKills;
+            _time = (int)LevelController.Instance.LevelTime;
+        }
+        
     }
 }
