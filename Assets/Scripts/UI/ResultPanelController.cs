@@ -24,6 +24,10 @@ namespace SpaceShooter
             _result.text = _success ? "Победа" : "Поражение";
             _buttonNextText.text = success ? "Следующий уровень" : "Начать заново";
 
+            _kills.text = $"Количество уничтожено: {levelResults.Kills}";
+            _score.text = $"Количество очков: {levelResults.Score}";
+            _time.text = $"Затраченное время: {levelResults.Time}";
+
             Time.timeScale = 0f;
         }
 
